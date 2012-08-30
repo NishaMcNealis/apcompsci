@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Flag extends JFrame {
     //frame has a vertical inset that extends above the frame
-    public static int verticalInset = 24;
+    public static int verticalInset = 22;
     
     public static int flagHeight = 500;
     public static int flagWidth  = (int) (1.9*flagHeight);
@@ -17,7 +17,7 @@ public class Flag extends JFrame {
     public static int stripeWidth  = flagWidth;
 
     public Flag() {
-	setSize(flagWidth, flagHeight);
+	setSize(flagWidth, flagHeight-14);
 	setBackground(Color.WHITE);
 	repaint();
     }
@@ -29,7 +29,8 @@ public class Flag extends JFrame {
     }
 
     public void stripeLoop(Graphics g, Color color) {
-	for (int i = 1; i < 8; i++) paintStripe(g, color, 0, (flagHeight/7) * (i-1)+verticalInset);
+	for (int i = 1; i < 8; i++)
+	    paintStripe(g, color, 0, (flagHeight/7) * (i-1)+verticalInset);
     }
 
     public void paintStripe(Graphics g, Color color, int x, int y) {
