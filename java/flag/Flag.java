@@ -2,19 +2,25 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Flag extends JFrame {
+
     //frame has a vertical inset that extends above the frame
-    public static int verticalInset = 24;
+    public static int verticalInset = 22;
     
     public static int flagHeight = 500;
-    public static int flagWidth  = (int) (1.9*flagHeight);
+    public static int flagWidth = (int) (1.9*flagHeight);
 
     public static int blueHeight = (int) (0.5385*flagHeight);
-    public static int blueWidth  = (int) (0.76*flagHeight);
+    public static int blueWidth = (int) (0.76*flagHeight);
 
     public static double starWidth = 0.0616;
 
     public static int stripeHeight = (int) (0.0769*flagHeight);
-    public static int stripeWidth  = flagWidth;
+    public static int stripeWidth = flagWidth;
+
+    public static int starFromTop = (int) (0.054*flagHeight);
+    public static int starFromSide = (int) (0.063*flagHeight);
+    public static int starFromStarVert = starFromTop;
+    public static int starFromStarHoriz = starFromSide;
 
     public Flag() {
 	setSize(flagWidth, flagHeight);
@@ -23,9 +29,30 @@ public class Flag extends JFrame {
     }
 
     public void paint(Graphics g) {
+	Dimension size = getSize();
+	//setSize((int) size.getWidth(), (int) size.getHeight());
+
 	stripeLoop(g, Color.RED);
 	paintBlue(g, 0, 10);
-	paintStar(g, starWidth, 5, 25);
+	starLoop(g, starWidth);
+    }
+
+    public void starLoop(Graphics g, double width) {
+	g.setColor(Color.WHITE);
+	for (int i = 0; i < 9; i++) {
+	    if (i%2 == 0) {
+		// odd row
+		for (int j = 0; j < 6; j++) {
+		    paintStar(g, width, starFromSide + 2*j*starFromStarHoriz, starFromTop + i*starFromStarVert);
+		}
+	    }
+	    else {
+		// even row
+		for (int j = 0; j < 5; j++) {
+		    paintStar(g, width, 2*starFromSide + 2*j*starFromStarHoriz, starFromTop + i*starFromStarVert);
+		}
+	    }
+	}
     }
 
     public void stripeLoop(Graphics g, Color color) {
