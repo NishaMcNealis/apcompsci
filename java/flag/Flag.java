@@ -23,7 +23,7 @@ public class Flag extends JFrame {
     public static int starFromStarHoriz = starFromSide;
 
     public Flag() {
-	setSize(flagWidth, flagHeight);
+	setSize(flagWidth, flagHeight-14);
 	setBackground(Color.WHITE);
 	repaint();
     }
@@ -56,7 +56,8 @@ public class Flag extends JFrame {
     }
 
     public void stripeLoop(Graphics g, Color color) {
-	for (int i = 1; i < 8; i++) paintStripe(g, color, 0, (flagHeight/7) * (i-1)+verticalInset);
+	for (int i = 1; i < 8; i++)
+	    paintStripe(g, color, 0, (flagHeight/7) * (i-1)+verticalInset);
     }
 
     public void paintStripe(Graphics g, Color color, int x, int y) {
