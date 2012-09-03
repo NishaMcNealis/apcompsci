@@ -30,11 +30,20 @@ public class Flag extends JFrame {
 
     public void paint(Graphics g) {
 	Dimension size = getSize();
-	flagHeight = (int) size.getHeight();
-	flagWidth = (int) (1.9*flagHeight);
+
+	// switches which dimension to use for scaling
+	if (size.getHeight() > size.getWidth()/1.9) {
+	    flagWidth = (int) size.getWidth();
+	    flagHeight = (int) (flagWidth/1.9);
+	}
+	else {
+	    flagHeight = (int) size.getHeight();
+	    flagWidth = (int) (flagHeight*1.9);
+	}
+
 	blueHeight = (int) (0.5385*flagHeight);
 	blueWidth = (int) (0.76*flagHeight);
-	starWidth = 0.0616;
+	starWidth = 0.0616*flagHeight/500;
 	stripeHeight = (int) (0.0769*flagHeight);
 	stripeWidth = flagWidth;
 	starFromTop = (int) (0.054*flagHeight);
