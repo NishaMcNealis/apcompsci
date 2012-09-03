@@ -23,14 +23,27 @@ public class Flag extends JFrame {
     public static int starFromStarHoriz = starFromSide;
 
     public Flag() {
-	setSize(flagWidth, flagHeight-14);
 	setBackground(Color.WHITE);
+	setSize(flagWidth, flagHeight-14);
 	repaint();
     }
 
     public void paint(Graphics g) {
 	Dimension size = getSize();
-	//setSize((int) size.getWidth(), (int) size.getHeight());
+	flagHeight = (int) size.getHeight();
+	flagWidth = (int) (1.9*flagHeight);
+	blueHeight = (int) (0.5385*flagHeight);
+	blueWidth = (int) (0.76*flagHeight);
+	starWidth = 0.0616;
+	stripeHeight = (int) (0.0769*flagHeight);
+	stripeWidth = flagWidth;
+	starFromTop = (int) (0.054*flagHeight);
+	starFromSide = (int) (0.063*flagHeight);
+	starFromStarVert = starFromTop;
+	starFromStarHoriz = starFromSide;
+
+	g.setColor(Color.WHITE);
+	g.fillRect(0, 0, (int) size.getWidth(), (int) size.getHeight());
 
 	stripeLoop(g, Color.RED);
 	paintBlue(g, 0, 10);
