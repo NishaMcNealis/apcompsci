@@ -3,9 +3,10 @@ import javax.swing.*;
 
 public class Flag extends JFrame {
 
-    //frame has a vertical inset that extends above the frame
+    // frame has a vertical inset that extends above the frame
     public static int verticalInset = 22;
     
+    // setting everything with the height as base dimension
     public static int flagHeight = 500;
     public static int flagWidth = (int) (1.9*flagHeight);
 
@@ -17,6 +18,7 @@ public class Flag extends JFrame {
     public static int stripeHeight = (int) (0.0769*flagHeight);
     public static int stripeWidth = flagWidth;
 
+    // these are pretty human-readable, and correspond to the dimension variables
     public static int starFromTop = (int) (0.054*flagHeight);
     public static int starFromSide = (int) (0.063*flagHeight);
     public static int starFromStarVert = starFromTop;
@@ -51,16 +53,22 @@ public class Flag extends JFrame {
 	starFromStarVert = starFromTop;
 	starFromStarHoriz = starFromSide;
 
+	// paint over the crap from earlier
 	g.setColor(Color.WHITE);
 	g.fillRect(0, 0, (int) size.getWidth(), (int) size.getHeight());
 
+	// loop through all 13 stripes
 	stripeLoop(g, Color.RED);
+
+	// paint the blue rectangle
 	paintBlue(g, 0, 10);
+
+	// loop through all 50 stars
 	starLoop(g, starWidth);
     }
 
+    // alternates star amounts per row
     public void starLoop(Graphics g, double width) {
-	g.setColor(Color.WHITE);
 	for (int i = 0; i < 9; i++) {
 	    if (i%2 == 0) {
 		// odd row
@@ -77,16 +85,19 @@ public class Flag extends JFrame {
 	}
     }
 
+    // paints red stripes every other row, using background as white stripes
     public void stripeLoop(Graphics g, Color color) {
 	for (int i = 1; i < 8; i++)
 	    paintStripe(g, color, 0, (flagHeight/7) * (i-1)+verticalInset);
     }
 
+    // just a rectangle. nothing to look at here
     public void paintStripe(Graphics g, Color color, int x, int y) {
 	g.setColor(color);
 	g.fillRect(x, y, stripeWidth, stripeHeight);
     }
 
+    // good when scaling the flag. simple coordinate transform.
     public Star scaleStar(Star s, double t) {
 	for (int i = 0; i < s.x.length; i++) {
 	    s.x[i] = (int) (t*s.x[i]);
@@ -95,6 +106,7 @@ public class Flag extends JFrame {
 	return s;
     }
 
+    // move a star around. simple coordinate transform.
     public Star translateStar(Star s, int x, int y) {
 	for (int i = 0; i < s.x.length; i++) {
 	    s.x[i] = s.x[i]+x;
@@ -103,11 +115,13 @@ public class Flag extends JFrame {
 	return s;
     }
 
+    // paint that blue rectangle.
     public void paintBlue(Graphics g, int x, int y) {
 	g.setColor(Color.BLUE);
 	g.fillRect(x,y,blueWidth,blueHeight);
     }
 
+    // use base coords, scale, and move around.
     public void paintStar(Graphics g, double scale, int x, int y) {
 	//base coords for Stars
 	int[] xcoords = {0, 162, 212, 262, 424, 293, 343, 212, 81, 131};
