@@ -1,4 +1,4 @@
 
-public class You {
+public class You extends Player{
 
 }
