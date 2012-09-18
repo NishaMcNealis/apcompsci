@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/home/tekknolagi/apcompsci/java/workspace/.metadata/.plugins/org.eclipse.jdt.core
-426162884.index
-76787593.index
-2624895923.index
