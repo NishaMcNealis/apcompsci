@@ -1,0 +1,12 @@
+import java.awt.*;
+
+public class Player {
+    public Player(Color c) {
+        
+        
+    }
+    
+    public void paint(Graphics g) {
+        
+    }
+}
