@@ -12,6 +12,6 @@ public class HivoltsBoard extends JApplet {
     }
 
     public static void main(String[] args) {
-	//paint shit...?!
+	    paint(shit...?!);
     }
 }
