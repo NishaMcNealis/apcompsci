@@ -1,7 +1,6 @@
 import java.awt.*;
 
 public class Player {
-    final int GRID_SIZE = 32;
     protected Color color;
     protected int xcoord, ycoord;
 
@@ -17,7 +16,7 @@ public class Player {
     
     public void paint(Graphics g) {
         g.setColor(color);
-        g.fillOval(xcoord * GRID_SIZE, ycoord * GRID_SIZE, 24, 24);
+        g.fillOval(xcoord * Dimensions.GRID_SIZE + (Dimensions.GRID_SIZE - Dimensions.UNIT_SIZE) / 2, ycoord * Dimensions.GRID_SIZE + (Dimensions.GRID_SIZE - Dimensions.UNIT_SIZE) / 2, Dimensions.UNIT_SIZE, Dimensions.UNIT_SIZE);
     } 
 }
 
