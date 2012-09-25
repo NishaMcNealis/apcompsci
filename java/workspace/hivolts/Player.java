@@ -4,6 +4,7 @@ public class Player {
     final int GRID_SIZE = 32;
     protected Color color;
     protected int xcoord, ycoord;
+
     public Player() {
         color = Color.BLACK;
         xcoord = ycoord = 0;
