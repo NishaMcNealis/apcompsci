@@ -1,13 +1,7 @@
 import java.awt.*;
 
-public class Player {
-    protected Color color;
-    protected int xcoord, ycoord;
+public class Player extends Unit {
 
-    public Player() {
-        color = Color.BLACK;
-        xcoord = ycoord = 0;
-    }
     public Player(int x, int y, Color c) {
         xcoord = x;
         ycoord = y;
