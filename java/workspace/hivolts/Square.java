@@ -14,6 +14,12 @@ public class Square {
     public int getValue() {
         return value;
     }
+    public int getX() {
+        return xcoord;
+    }
+    public int getY() {
+        return ycoord;
+    }
 
     public void paint(Graphics g) {
         if(value == 0) {

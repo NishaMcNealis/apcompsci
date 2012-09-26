@@ -75,4 +75,19 @@ public class Grid {
             innerSquares[i].paint(g);
         }
     }
+
+    //moveYou returns 1 if the move is valid, 0 if it loses the game
+    public int moveYou(Square youSquare, int x, int y) {
+        if(innerSquares[10 * y + x].getValue() == 0) {
+            innerSquares[10 * y + x].setValue(1);
+            innerSquares[10 * youSquare.getY() + youSquare.getx()].setValue(0);
+            return 1;
+        }
+        else {
+            innerSquares[10 * youSquare.getY() + youSquare.getx()].setValue(0);
+        }
+    }
+    public void moveMho(Mho mho) {
+
+    }
 }
