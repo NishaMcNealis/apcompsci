@@ -13,7 +13,6 @@ public class Grid {
         for(int i = 0; i < borderSquares.length; i++) {
             borderSquares[i].setValue(3);
         }
-        //end fence border
             
         //creates squares inside the border    
         for(int i = 11; i < innerSquares.length; i++) {
@@ -24,6 +23,7 @@ public class Grid {
             int y = (int) (String.valueOf(Math.abs((long)i)).charAt(0) - '0');
             innerSquares[i] = new Square(x, y);
         }
+        //creates 20 randomly located fences
         for(int i = 0; i < 20; i++) {
             Random random = new Random();
             boolean valid = false;
@@ -32,6 +32,32 @@ public class Grid {
                 int y = random.nextInt(10) + 1;
                 if(innerSquares[10 * y + x].getValue() == 0) {
                     innerSquares[10 * y + x].setValue(3);
+                    valid = true;
+                }
+            }
+        }
+        //creates 12 randomly located mhos
+        for(int i = 0; i < 12; i++) {
+            Random random = new Random();
+            boolean valid = false;
+            while(valid == false) {
+                int x = random.nextInt(10) + 1;
+                int y = random.nextInt(10) + 1;
+                if(innerSquares[10 * y + x].getValue() == 0) {
+                    innerSquares[10 * y + x].setValue(2);
+                    valid = true;
+                }
+            }
+        }
+        //creates 1 randomly located you
+        for(int i = 0; i < 1; i++) {
+            Random random = new Random();
+            boolean valid = false;
+            while(valid == false) {
+                int x = random.nextInt(10) + 1;
+                int y = random.nextInt(10) + 1;
+                if(innerSquares[10 * y + x].getValue() == 0) {
+                    innerSquares[10 * y + x].setValue(1);
                     valid = true;
                 }
             }
