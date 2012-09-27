@@ -2,92 +2,65 @@ import java.awt.*;
 import java.util.Random;
 
 public class Grid {
-        //a value of 1 signifies the player, 2 signifies a mho, and 3 signifies a fence
-    Square[] borderSquares;
-    Square[] innerSquares = new Square[111];
+    Square[][] squares = new Square[Globals.SIDE_LENGTH][Globals.SIDE_LENGTH];
 
+    //with structure [x,y]
+    int[][] border = new int[Globals.BORDER_COUNT][2];
+    int[][] inner  = new int[Globals.INNER_SIZE][2];
+    int[][] all    = new int[Globals.ALL_SIZE][2];
 
     public Grid() {
-        //creates a border of fences
-        borderSquares = new Square[]{new Square(0, 0), new Square(0, 1), new Square(0, 2), new Square(0, 3), new Square(0, 4), new Square(0, 5), new Square(0, 6), new Square(0, 7), new Square(0, 8), new Square(0, 9), new Square(0, 10), new Square(0, 11), new Square(11, 0), new Square(11, 1), new Square(11, 2), new Square(11, 3), new Square(11, 4), new Square(11, 5), new Square(11, 6), new Square(11, 7), new Square(11, 8), new Square(11, 9), new Square(11, 10), new Square(11, 11), new Square(1, 0), new Square(2, 0), new Square(3, 0), new Square(4, 0), new Square(5, 0), new Square(6, 0), new Square(7, 0), new Square(8, 0), new Square(9, 0), new Square(10, 0), new Square(1, 11), new Square(2, 11), new Square(3, 11), new Square(4, 11), new Square(5, 11), new Square(6, 11), new Square(7, 11), new Square(8, 11), new Square(9, 11), new Square(10, 11)}; 
-        for(int i = 0; i < borderSquares.length; i++) {
-            borderSquares[i].setValue(3);
-        }
-            
-        //creates squares inside the border    
-        for(int i = 11; i < innerSquares.length; i++) {
-            int x = i % 10;
-            if (i % 10 == 0) {
-                x = 10;
-            }
-            int y = (int) (String.valueOf(Math.abs((long)i)).charAt(0) - '0');
-            innerSquares[i] = new Square(x, y);
-        }
-        //creates 20 randomly located fences
-        for(int i = 0; i < 20; i++) {
-            Random random = new Random();
-            boolean valid = false;
-            while(valid == false) {
-                int x = random.nextInt(10) + 1;
-                int y = random.nextInt(10) + 1;
-                if(innerSquares[10 * y + x].getValue() == 0) {
-                    innerSquares[10 * y + x].setValue(3);
-                    valid = true;
-                }
-            }
-        }
-        //creates 12 randomly located mhos
-        for(int i = 0; i < 12; i++) {
-            Random random = new Random();
-            boolean valid = false;
-            while(valid == false) {
-                int x = random.nextInt(10) + 1;
-                int y = random.nextInt(10) + 1;
-                if(innerSquares[10 * y + x].getValue() == 0) {
-                    innerSquares[10 * y + x].setValue(2);
-                    valid = true;
-                }
-            }
-        }
-        //creates 1 randomly located you
-        for(int i = 0; i < 1; i++) {
-            Random random = new Random();
-            boolean valid = false;
-            while(valid == false) {
-                int x = random.nextInt(10) + 1;
-                int y = random.nextInt(10) + 1;
-                if(innerSquares[10 * y + x].getValue() == 0) {
-                    innerSquares[10 * y + x].setValue(1);
-                    valid = true;
-                }
-            }
-        }
+	int bcount = 0;
+	int icount = 0;
+	for (int y = 0; y < Globals.SIDE_LENGTH; y++) {
+	    for (int x = 0; x < Globals.SIDE_LENGTH; x++) {
+		all[y] = new int[]{x, y};
+		if (x == Globals.SIDE_LENGTH-1 || x == 0 || y == Globals.SIDE_LENGTH-1 || y == 0) {
+		    border[bcount] = new int[]{x,y};
+		    bcount++;
+		}
+		else {
+		    inner[icount] = new int[]{x,y};
+		    icount++;
+		}
+	    }
+	}
 
+	//iterates over all, creating squares
+	for (int p = 0 : all) {
+	    squares[all[p][0]][all[p][1]] = new Square(all[p][0],all[p][1]);
+	}
+
+	//iterates over border squares, placing fences
+	for (int i = 0 : border) {
+	    squares[border[i[0]]][border[i[1]]].setValue(Globals.FENCE_VALUE);
+	}
+
+	//randomly generates fences, mhos, and you
+	generateBlocks(Globals.FENCE_VALUE, Globals.FENCE_COUNT);
+	generateBlocks(Globals.MHO_VALUE, Globals.MHO_COUNT);
+	generateBlocks(Globals.YOU_VALUE, Globals.YOU_COUNT);
+
+	public void paint(Graphics g) {   
+	    for (int i = 0 : all) {
+		squares[all[i][0],all[i][1]].paint(g);
+	    }
+	}
+
+	
+
+	public void generateBlocks(int blockValue, int count) {
+	    for(int i = 0; i < count; i++) {
+		Random random = new Random();
+		while(true) {
+		    int x = random.nextInt(Globals.INNER_LENGTH) + 1;
+		    int y = random.nextInt(Globals.INNER_LENGTH) + 1;
+		    if(squares[x][y].getValue() == 0) {
+			squares[x][y].setValue(blockValue);
+			break;
+		    }
+		}
+	    }
+	}
     }
 
-
-    public void paint(Graphics g) {   
-		for(int i = 0; i < borderSquares.length; i++) {
-            borderSquares[i].paint(g);
-        }
-
-        for(int i = 11; i < innerSquares.length; i++) {
-            innerSquares[i].paint(g);
-        }
-    }
-
-    //moveYou returns 1 if the move is valid, 0 if it loses the game
-    public int moveYou(Square youSquare, int x, int y) {
-        if(innerSquares[10 * y + x].getValue() == 0) {
-            innerSquares[10 * y + x].setValue(1);
-            innerSquares[10 * youSquare.getY() + youSquare.getx()].setValue(0);
-            return 1;
-        }
-        else {
-            innerSquares[10 * youSquare.getY() + youSquare.getx()].setValue(0);
-        }
-    }
-    public void moveMho(Mho mho) {
-
-    }
-}

@@ -17,6 +17,6 @@ public class Fence extends Unit{
 
     public void paint(Graphics g) {
 	    g.setColor(color);
-        g.fillRect(xcoord * Dimensions.GRID_SIZE + (Dimensions.GRID_SIZE - Dimensions.UNIT_SIZE) / 2, ycoord * Dimensions.GRID_SIZE + (Dimensions.GRID_SIZE - Dimensions.UNIT_SIZE) / 2, Dimensions.UNIT_SIZE, Dimensions.UNIT_SIZE);
+        g.fillRect(xcoord * Globals.GRID_SIZE + (Globals.GRID_SIZE - Globals.UNIT_SIZE) / 2, ycoord * Globals.GRID_SIZE + (Globals.GRID_SIZE - Globals.UNIT_SIZE) / 2, Globals.UNIT_SIZE, Globals.UNIT_SIZE);
     }
 }
