@@ -1,8 +1,14 @@
 require 'socket'
 require 'readline'
 
-loop {
-  socket = TCPSocket.new ARGV[0], ARGV[1]
-  socket.print Readline.readline("> ", true)
-  puts socket.gets
-}
+begin
+  loop {
+    socket = TCPSocket.new ARGV[0], ARGV[1]
+    socket.puts Readline.readline("> ", true)
+    puts socket.gets
+    socket.close
+  }
+rescue Interrupt
+  puts
+  exit 0
+end
