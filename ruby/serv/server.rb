@@ -45,7 +45,7 @@ actions = {
     end
   },
   "list" => Proc.new {
-    $hash.inspect
+    [$hash.inspect, nil]
   }
 }
 
