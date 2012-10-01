@@ -3,7 +3,7 @@
 # 1) Methods need not be called with parentheses unless calls are nested.
 # i.e. puts "hello, world"
 # and puts("hello, world")
-# But if you're going to nest them such as parse do_something "data", then you need to do: parse(do_something "data")
+# But if you're going to nest them such as `parse do_something "data"`, then you need to do `parse(do_something "data")`
 
 # 2) Returns can be stated implicitly, like so:
 # def method
@@ -13,15 +13,41 @@
 # And about this code specifically.
 
 # 1) It can probably be more generalized.
+#    1) With more segmentation, too
 # 2) I purposefully avoided Java-style programming.
+#    1) No classes, but definitely segmented into functions
 # 3) It's severely limited.
+#    1) Everything is stored in memory with no automatic db dumps to disk.
+#       1) You can dump with the dump command, and load with the load command
+#    2) Does not follow DNS protocol in any way. Has no authentication or anything.
+
+# Commands:
+# 1) where
+#    Takes one argument: domain name.
+#    where hypeno.de
+# 2) add
+#    Takes two arguments: domain name and IP address
+#    add google.com 10.0.1.4
+# 3) remove
+#    Takes one argument: domain name
+#    remove google.com
+# 4) list
+#    Takes no arguments, and just lists the records.
+# 5) dump
+#    Takes one argument: file name.
+#    dump the_dump.yml
+# 6) load
+#    Takes one argument: file name.
+#    load the_dump.yml
 
 require 'socket'
+require 'yaml'
 
 $hash = {
   "hypeno.de" => "10.0.1.1"
 }
 
+# function table
 actions = {
   "where" => Proc.new {|host|
     if $hash.include? host
@@ -46,6 +72,24 @@ actions = {
   },
   "list" => Proc.new {
     [$hash.inspect, nil]
+  },
+  "dump" => Proc.new {|filename|
+    begin
+      File.open(filename, "w+") do |file|
+        file.write $hash.to_yaml
+      end
+      ["SUCCESS", nil]
+    rescue
+      [nil, "SOME ERROR might not be writable"]
+    end
+  },
+  "load" => Proc.new {|filename|
+    if not File.exists? filename
+      [nil, "ERROR not found"]
+    else
+      $hash = YAML::load_file file
+      ["SUCCESS", nil]
+    end
   }
 }
 
@@ -75,8 +119,10 @@ loop {
       # client info
       port, ip = Socket.unpack_sockaddr_in(client.getpeername)
       puts "#{ip}:#{port}"
+
       data = client.recvfrom(1024)
       data = parse(data[0])
+
       # if we know the function
       if actions.include? data[:action]
         begin
@@ -85,6 +131,7 @@ loop {
           if data[:error]
             data[:response] = data[:error]
           end
+
           # if too many or too few params
         rescue TypeError
           data[:response] = "ERROR bad params"
@@ -92,10 +139,12 @@ loop {
       else
         data[:response] = "ERROR unknown action"
       end
+
       puts data.inspect
       client.puts data[:response]
       client.close
     end
+
   rescue Interrupt
     puts
     puts $hash.inspect
