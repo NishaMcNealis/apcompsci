@@ -80,6 +80,7 @@ $actions = {
   },
 
   "dump" => Proc.new {|filename|
+    filename ||= $default
     begin
       File.open(filename, "w+") do |file|
         file.write $hash.to_yaml
@@ -91,6 +92,7 @@ $actions = {
   },
 
   "load" => Proc.new {|filename|
+    filename ||= $default
     if not File.exists? filename
       [nil, "ERROR not found"]
     else
