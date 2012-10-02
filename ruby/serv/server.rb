@@ -19,6 +19,7 @@
 # 3) It's severely limited.
 #    1) Everything is stored in memory with no automatic db dumps to disk.
 #       1) You can dump with the dump command, and load with the load command
+#       2) Dumps on Interrupt (^C)
 #    2) Does not follow DNS protocol in any way. Has no authentication or anything.
 
 # Commands:
@@ -46,9 +47,10 @@ require 'yaml'
 $hash = {
   "hypeno.de" => "10.0.1.1"
 }
+$default = "dump.yml"
 
 # function table
-actions = {
+$actions = {
   "where" => Proc.new {|host|
     if $hash.include? host
       [$hash[host], nil]
@@ -56,6 +58,7 @@ actions = {
       [nil, "ERROR not found"]
     end
   },
+
   "add" => Proc.new {|host, ip|
     unless $hash.include? host
       [$hash[host] = ip, nil]
@@ -63,6 +66,7 @@ actions = {
       [nil, "ERROR already exists"]
     end
   },
+
   "remove" => Proc.new {|host|
     if $hash.include? host
       [$hash.delete(host), nil]
@@ -70,9 +74,11 @@ actions = {
       [nil, "ERROR no such record"]
     end
   },
+
   "list" => Proc.new {
     [$hash.inspect, nil]
   },
+
   "dump" => Proc.new {|filename|
     begin
       File.open(filename, "w+") do |file|
@@ -83,6 +89,7 @@ actions = {
       [nil, "SOME ERROR might not be writable"]
     end
   },
+
   "load" => Proc.new {|filename|
     if not File.exists? filename
       [nil, "ERROR not found"]
@@ -111,6 +118,26 @@ def parse(request)
   return obj
 end
 
+def do_with(data)
+  # if we know the function
+  if $actions.include? data[:action]
+    begin
+      # call the function with the arguments, and unpack the return into response and error
+      data[:response], data[:error] = $actions[data[:action]].call *data[:args]
+      if data[:error]
+        data[:response] = data[:error]
+      end
+      
+      # if too many or too few params
+    rescue TypeError
+      data[:response] = "ERROR bad params"
+    end
+  else
+    data[:response] = "ERROR unknown action"
+  end
+  return data
+end
+
 server = TCPServer.open(4444)
 
 loop {
@@ -118,36 +145,22 @@ loop {
     Thread.start(server.accept) do |client|
       # client info
       port, ip = Socket.unpack_sockaddr_in(client.getpeername)
-      puts "#{ip}:#{port}"
+      puts "LOG #{ip}:#{port}"
 
-      data = client.recvfrom(1024)
-      data = parse(data[0])
+      # receive, parse, then act on it
+      data = do_with(parse(client.recvfrom(1024)[0]))
 
-      # if we know the function
-      if actions.include? data[:action]
-        begin
-          # call the function with the arguments, and unpack the return into response and error
-          data[:response], data[:error] = actions[data[:action]].call *data[:args]
-          if data[:error]
-            data[:response] = data[:error]
-          end
+      puts "LOG "+data.inspect
 
-          # if too many or too few params
-        rescue TypeError
-          data[:response] = "ERROR bad params"
-        end
-      else
-        data[:response] = "ERROR unknown action"
-      end
-
-      puts data.inspect
+      # send client a response
       client.puts data[:response]
+      # close connection
       client.close
     end
 
   rescue Interrupt
     puts
-    puts $hash.inspect
+    $actions["dump"].call $default
     exit 0
   end
 }
