@@ -48,7 +48,8 @@ $hash = {
   "hypeno.de" => "10.0.1.1"
 }
 $default = "dump.yml"
-$port = ARGV[0].to_i ||= 4444
+$port = ARGV[0].to_i
+$port ||= 4444
 
 # function table
 $actions = {
@@ -95,9 +96,9 @@ $actions = {
   "load" => Proc.new {|filename|
     filename ||= $default
     if not File.exists? filename
-      [nil, "ERROR not found"]
+      [nil, "ERROR not found or not readable"]
     else
-      $hash = YAML::load_file file
+      $hash = YAML::load_file filename
       ["SUCCESS", nil]
     end
   }
