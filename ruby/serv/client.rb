@@ -3,7 +3,12 @@ require 'readline'
 
 begin
   loop {
-    socket = TCPSocket.new ARGV[0], ARGV[1]
+    begin
+      socket = TCPSocket.new ARGV[0], ARGV[1]
+    rescue Errno::ECONNREFUSED
+      puts "ERROR server offline"
+      exit 1
+    end
     socket.puts Readline.readline("> ", true)
     puts socket.gets
     socket.close
