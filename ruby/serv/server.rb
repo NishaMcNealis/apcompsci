@@ -48,6 +48,7 @@ $hash = {
   "hypeno.de" => "10.0.1.1"
 }
 $default = "dump.yml"
+$port = ARGV[0].to_i ||= 4444
 
 # function table
 $actions = {
@@ -140,7 +141,7 @@ def do_with(data)
   return data
 end
 
-server = TCPServer.open(4444)
+server = TCPServer.open($port)
 
 loop {
   begin
