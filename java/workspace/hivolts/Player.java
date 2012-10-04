@@ -1,4 +1,4 @@
-\import java.awt.*;
+import java.awt.*;
 
 public class Player extends Unit {
 
@@ -16,15 +16,15 @@ public class Player extends Unit {
     public void translate(int x, int y) {
 	move(xcoord + x, ycoord + y);
     }
-
-    public void moveUp()        { translate(0, -1);  }
-    public void moveDown()      { translate(0, 1);   }
-    public void moveLeft()      { translate(-1, 0);  }
+    /*
+    public void moveUp()        { return {0, -1};  }
+    public void moveDown()      { return {0, 1};   }
+    public void moveLeft()      { return {-1, 0};  }
     public void moveRight()     { translate(1, 0);   }
     public void moveUpLeft()    { translate(-1, -1); }
     public void moveUpRight()   { translate(1, -1);  }
     public void moveDownLeft()  { translate(-1, 1);  }
-    public void moveDownRight() { translate(1, 1);   }
+    public void moveDownRight() { translate(1, 1);   } */
 
     public void paint(Graphics g) {
         g.setColor(color);
