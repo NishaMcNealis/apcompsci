@@ -3,26 +3,40 @@ require 'yaml'
 $db = YAML.load(File.read "class.yaml")
 
 module ClassDB
-  def ClassDB.getbyid(id)
-    return $db[id]
+  def ClassDB.getbyname(name)
+    return $db[name]
   end
 end
 
 class SchoolClass
-  @id = 0
   @name = ""
   @preqreqs = []
-  def add(id, name, prereqs)
-    @id = id
-    @name = name
-    @prereqs = prereqs
+
+  def initialize(name)
+    add(ClassDB::getbyname name)
   end
 
-  def addbyid(id)
-    ClassDB::getbyid id
+  def add(hash)
+    @name = hash["name"]
+    @prereqs = hash["prereqs"]
+  end
+
+  def prereqs
+    @prereqs
   end
 end
 
-a = SchoolClass.new
-a.add(*a.addbyid("0"))
-puts a.inspect
+def r_prereqs(tclass, j)
+  p = tclass.prereqs
+  if not p
+    return j
+  end
+  p.each {|a| j.push(a)}
+  p.collect {|req|
+    c = SchoolClass.new req
+    q = r_prereqs(c, j)
+  }
+end
+
+a = SchoolClass.new "AP Computer Science"
+puts r_prereqs(a, [])[0][0][0].inspect

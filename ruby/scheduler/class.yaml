@@ -1,5 +1,16 @@
 ---
-'0':
-  :id: '0'
-  :name: AP Computer Science
-  :prerequisite: Advanced Java
+AP Computer Science:
+  name: AP Computer Science
+  prereqs:
+  - Advanced Java
+Intro Java:
+  name: Intro Java
+  prereqs:
+  - Algebra 1
+Advanced Java:
+  name: Advanced Java
+  prereqs:
+  - Intro Java
+Algebra 1:
+  name: Algebra 1
+  prereqs:
