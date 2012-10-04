@@ -94,7 +94,7 @@ public class Grid {
 	for (int i = 0; i < mhoList.length; i++) {
 	    int x = mhoList[i][0];
 	    int y = mhoList[i][1];
-	    squares[x][y].s
+	    // squares[x][y].
 	}
     }
 }
