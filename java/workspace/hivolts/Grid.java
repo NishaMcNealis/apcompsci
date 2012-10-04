@@ -3,6 +3,8 @@ import java.util.Random;
 import java.util.Arrays;
 
 public class Grid {
+    boolean alive = true;
+
     Square[][] squares = new Square[Globals.SIDE_LENGTH][Globals.SIDE_LENGTH];
 
     //with structure [x,y]
@@ -82,11 +84,48 @@ public class Grid {
     public int getSign(int n) {
 	return n/abs(n);
     }
+   
+    /*
+    public int validForMho(Square square) {
+	if (square.getValue() == Globals.BLANK_VALUE) { return Globals.BLANK_VALUE };
+	if (square.getValue() == Globals.FENCE_VALUE) { return Globals.FENCE_VALUE };
+	if (square.getValue() == 
+    } */
 
-    public void moveMho(int x, int y) {
+    public void forceMoveMho(int x, int y, int n) {
+	if(squares[x][y].getValue() == Globals.BLANK_VALUE) {
+	    squares[x][y].setValue(Globals.MHO_VALUE);
+	    mhoList[n][0] = x;
+	    mhoList[n][1] = y;
+	}
+	else if(squares[x][y].getValue() == Globals.YOU_VALUE) {
+	    squares[x][y].setValue(Globals.MHO_VALUE);
+	    mhoList[n][0] = x;
+	    mhoList[n][1] = y;
+	    alive = false;
+	}
+	else {
+	    mhoList[n][0] = -1;
+	}
+    }
+
+    public void moveMho(int x, int y, int n) {
 	squares[x][y].setValue(Globals.BLANK_VALUE);
 	if(x == you[0]) {
-	    
+	    if(getSign(x - you[0]) == 1) {
+		forceMoveMho(x, y-1, n);
+	    }
+	    else {
+		forceMoveMho(x, y+1, n);
+	    }
+	}
+	else if(y == you[1]) {
+	    if(getSign(y - you[1]) == 1) {
+		forceMoveMho(x-1, y, n);
+	    }
+	    else {
+		forceMoveMho(x+1, y, n);
+	    }
 	}
     }
     
@@ -94,7 +133,9 @@ public class Grid {
 	for (int i = 0; i < mhoList.length; i++) {
 	    int x = mhoList[i][0];
 	    int y = mhoList[i][1];
-	    // squares[x][y].
+	    if(x >= 0) {
+		moveMho(x, y, i);
+	    }
 	}
     }
 }
