@@ -17,6 +17,7 @@ public class Grid {
     int[] you       = new int[2];
 
     public Grid() {
+	System.out.println("new Grid");
 	int bcount = 0;
 	int icount = 0;
 	int acount = 0;
