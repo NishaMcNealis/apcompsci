@@ -4,8 +4,9 @@ import java.awt.*;
 public class HivoltsBoard extends JApplet {
     
     public void init() {
-       
+	addKeyListener( this );
     }
+
     public void paint(Graphics g) {
         //draw grid lines
         g.setColor(Color.BLACK);
@@ -19,4 +20,18 @@ public class HivoltsBoard extends JApplet {
         grid.paint(g);
     }
 
+}
+
+public class KeyboardListener implements KeyListener {
+    public void keyPressed(KeyEvent arg0) {
+	
+    }
+
+    public void keyReleased(KeyEvent arg0) {
+
+    }
+
+    public void keyTyped(KeyEvent arg0) {
+
+    }
 }

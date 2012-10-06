@@ -16,7 +16,7 @@ public class Player extends Unit {
     public void translate(int x, int y) {
 	move(xcoord + x, ycoord + y);
     }
-    /*
+    
     public void moveUp()        { return {0, -1};  }
     public void moveDown()      { return {0, 1};   }
     public void moveLeft()      { return {-1, 0};  }
@@ -24,7 +24,7 @@ public class Player extends Unit {
     public void moveUpLeft()    { translate(-1, -1); }
     public void moveUpRight()   { translate(1, -1);  }
     public void moveDownLeft()  { translate(-1, 1);  }
-    public void moveDownRight() { translate(1, 1);   } */
+    public void moveDownRight() { translate(1, 1);   } 
 
     public void paint(Graphics g) {
         g.setColor(color);
