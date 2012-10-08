@@ -200,14 +200,14 @@ public class Grid {
 	}
     }
 
-    public void isValidForYou(int x, int y) {
-
+    public boolean moveYou(int x, int y) {
+	
     }
 
     public void keyAction(char c) {
 	switch(c) {
 	case 's': {
-	    //	isValidForYou();
+	    moveYou(you);
 	    break;
 	}
 	case 'j': {
