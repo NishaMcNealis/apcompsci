@@ -1,11 +1,14 @@
 import javax.swing.JApplet;
 import java.awt.*;
+import java.awt.event.*;
 
-public class HivoltsBoard extends JApplet {
-    
+public class HivoltsBoard extends JApplet implements KeyListener {
+    Grid grid = new Grid();
+
     public void init() {
-       
+	addKeyListener( this );
     }
+
     public void paint(Graphics g) {
         //draw grid lines
         g.setColor(Color.BLACK);
@@ -15,8 +18,19 @@ public class HivoltsBoard extends JApplet {
         }
         //end grid lines
         
-        Grid grid = new Grid();
         grid.paint(g);
     }
 
+    public void keyPressed(KeyEvent e) {
+
+    }
+    
+    public void keyReleased(KeyEvent e) {
+	
+    }
+    
+    public void keyTyped(KeyEvent e) {
+	grid.moveMhos();
+	repaint();	
+    }
 }

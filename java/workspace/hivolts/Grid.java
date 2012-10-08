@@ -17,6 +17,7 @@ public class Grid {
     int[] you       = new int[2];
 
     public Grid() {
+	System.out.println("new Grid");
 	int bcount = 0;
 	int icount = 0;
 	int acount = 0;
@@ -92,7 +93,7 @@ public class Grid {
 	if (square.getValue() == 
     } */
 
-    public void forceMoveMho(int x, int y, int n) {
+    public void forcedMoveMho(int x, int y, int n) {
 	if(squares[x][y].getValue() == Globals.BLANK_VALUE) {
 	    squares[x][y].setValue(Globals.MHO_VALUE);
 	    mhoList[n][0] = x;
@@ -109,22 +110,82 @@ public class Grid {
 	}
     }
 
+    public boolean unforcedMoveMho(int x, int y, int n, boolean isFenceSquareValid) {
+	if(squares[x][y].getValue() == Globals.BLANK_VALUE) {
+	    squares[x][y].setValue(Globals.MHO_VALUE);
+	    mhoList[n][0] = x;
+	    mhoList[n][1] = y;
+	    return true;
+	}
+	else if(squares[x][y].getValue() == Globals.YOU_VALUE) {
+	    squares[x][y].setValue(Globals.MHO_VALUE);
+	    mhoList[n][0] = x;
+	    mhoList[n][1] = y;
+	    alive = false;
+	    return true;
+	}
+	else if(isFenceSquareValid && squares[x][y].getValue() == Globals.FENCE_VALUE) {
+	    mhoList[n][0] = -1;
+	    return true;
+	}
+	else {
+	    return false;
+	}
+
+    }
+
     public void moveMho(int x, int y, int n) {
+	boolean toContinue = true;
 	squares[x][y].setValue(Globals.BLANK_VALUE);
+	//if in line with you
 	if(x == you[0]) {
-	    if(getSign(x - you[0]) == 1) {
-		forceMoveMho(x, y-1, n);
+	    if(getSign(y - you[1]) == 1) {
+		forcedMoveMho(x, y-1, n);
 	    }
 	    else {
-		forceMoveMho(x, y+1, n);
+		forcedMoveMho(x, y+1, n);
 	    }
 	}
 	else if(y == you[1]) {
-	    if(getSign(y - you[1]) == 1) {
-		forceMoveMho(x-1, y, n);
+	    if(getSign(x - you[0]) == 1) {
+		forcedMoveMho(x-1, y, n);
 	    }
 	    else {
-		forceMoveMho(x+1, y, n);
+		forcedMoveMho(x+1, y, n);
+	    }
+	}
+	//not in line with you
+	else {
+	    if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, false)) {
+		toContinue = false;
+	    }
+	    else if(abs(x-you[0]) > abs(y-you[1])) {
+		if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
+		    toContinue = false;
+		}
+		else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, false)) {
+		    toContinue = false;
+		}
+	    }
+	    else {
+		if(unforcedMoveMho(x, y - getSign(y - you[1]), n, false)) {
+		    toContinue = false;
+		}
+		else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
+		    toContinue = false;
+		}
+	    }
+
+	    if(toContinue) {
+		if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, true));
+		else if(abs(x-you[0]) > abs(y-you[1])) {
+		    if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
+		    else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, true));
+		}
+		else {
+		    if(unforcedMoveMho(x, y - getSign(y - you[1]), n, true));
+		    else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
+		}
 	    }
 	}
     }
