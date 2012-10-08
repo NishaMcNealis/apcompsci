@@ -3,14 +3,23 @@ AP Computer Science:
   name: AP Computer Science
   prereqs:
   - Advanced Java
+  - AP Calculus AB
 Intro Java:
   name: Intro Java
   prereqs:
-  - Algebra 1
+  - Algebra 1A
 Advanced Java:
   name: Advanced Java
   prereqs:
   - Intro Java
-Algebra 1:
-  name: Algebra 1
+Algebra 1A:
+  name: Algebra 1A
   prereqs:
+Geometry 1A:
+  name: Geometry 1A
+  prereqs:
+  - Algebra 1A
+AP Calculus AB:
+   name: AP Calculus AB
+   prereqs:
+   - Geometry 1A

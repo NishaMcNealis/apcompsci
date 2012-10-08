@@ -32,11 +32,8 @@ def r_prereqs(tclass, j)
     return j
   end
   p.each {|a| j.push(a)}
-  p.collect {|req|
-    c = SchoolClass.new req
-    q = r_prereqs(c, j)
-  }
+  p.collect {|req| r_prereqs(SchoolClass.new req, j)}
 end
 
 a = SchoolClass.new "AP Computer Science"
-puts r_prereqs(a, [])[0][0][0].inspect
+puts r_prereqs(a, []).flatten.uniq.inspect
