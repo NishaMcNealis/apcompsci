@@ -135,111 +135,128 @@ public class Grid {
   }
 
   public void moveMho(int x, int y, int n) {
-    boolean toContinue = true;
-    squares[x][y].setValue(Globals.BLANK_VALUE);
-    //if in line with you
-    if(x == you[0]) {
-      if(getSign(y - you[1]) == 1) {
-        forcedMoveMho(x, y-1, n);
+      boolean toContinue = true;
+      squares[x][y].setValue(Globals.BLANK_VALUE);
+      //if in line with you
+      if(x == you[0]) {
+	  if(getSign(y - you[1]) == 1) {
+	      forcedMoveMho(x, y-1, n);
+	  }
+	  else {
+	      forcedMoveMho(x, y+1, n);
+	  }
       }
+      else if(y == you[1]) {
+	  if(getSign(x - you[0]) == 1) {
+	      forcedMoveMho(x-1, y, n);
+	  }
+	  else {
+	      forcedMoveMho(x+1, y, n);
+	  }
+      }
+      //not in line with you
       else {
-        forcedMoveMho(x, y+1, n);
-      }
-    }
-    else if(y == you[1]) {
-      if(getSign(x - you[0]) == 1) {
-        forcedMoveMho(x-1, y, n);
-      }
-      else {
-        forcedMoveMho(x+1, y, n);
-      }
-    }
-    //not in line with you
-    else {
-      if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, false)) {
-        toContinue = false;
-      }
-      else if(abs(x-you[0]) > abs(y-you[1])) {
-        if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
-          toContinue = false;
-        }
-        else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, false)) {
-          toContinue = false;
-        }
-      }
-      else {
-        if(unforcedMoveMho(x, y - getSign(y - you[1]), n, false)) {
-          toContinue = false;
-        }
-        else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
-          toContinue = false;
-        }
-      }
+	  if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, false)) {
+	      toContinue = false;
+	  }
+	  else if(abs(x-you[0]) > abs(y-you[1])) {
+	      if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
+		  toContinue = false;
+	      }
+	      else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, false)) {
+		  toContinue = false;
+	      }
+	  }
+	  else {
+	      if(unforcedMoveMho(x, y - getSign(y - you[1]), n, false)) {
+		  toContinue = false;
+	      }
+	      else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, false)) {
+		  toContinue = false;
+	      }
+	  }
 
-      if(toContinue) {
-        if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, true));
-        else if(abs(x-you[0]) > abs(y-you[1])) {
-          if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
-          else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, true));
-        }
-        else {
-          if(unforcedMoveMho(x, y - getSign(y - you[1]), n, true));
-          else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
-        }
+	  if(toContinue) {
+	      if(unforcedMoveMho(x - getSign(x-you[0]), y - getSign(y-you[1]), n, true));
+	      else if(abs(x-you[0]) > abs(y-you[1])) {
+		  if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
+		  else if(unforcedMoveMho(x, y - getSign(y-you[1]), n, true));
+	      }
+	      else {
+		  if(unforcedMoveMho(x, y - getSign(y - you[1]), n, true));
+		  else if(unforcedMoveMho(x - getSign(x-you[0]), y, n, true));
+	      }
+	  }
       }
-    }
   }
     
-  public void moveMhos() {
-    for (int i = 0; i < mhoList.length; i++) {
-      int x = mhoList[i][0];
-      int y = mhoList[i][1];
-      if(x >= 0) {
-        moveMho(x, y, i);
-      }
+    public void moveMhos() {
+	for (int i = 0; i < mhoList.length; i++) {
+	    int x = mhoList[i][0];
+	    int y = mhoList[i][1];
+	    if(x >= 0) {
+		moveMho(x, y, i);
+	    }
+	}
     }
-  }
 
-  public void keyAction(char c) {
-    switch(c) {
-    case 's': {
-      // sit
+    public void isValidForYou(int x, int y) {
+
     }
-    case 'j': {
-      // jump
+
+    public void keyAction(char c) {
+	switch(c) {
+	case 's': {
+	    //	isValidForYou();
+	    break;
+	}
+	case 'j': {
+	    // jump
+	    break;
+	}
+	case 'w': {
+	    // up
+	    break;
+	}
+	case 'x': {
+	    // down
+	    break;
+	}
+	case 'd': {
+	    // right
+	    break;
+	}
+	case 'a': {
+	    //left
+	    break;
+	} 
+	case 'e': {
+	    // up and right
+	    keyAction('w');
+	    keyAction('d');
+	    break;
+	}
+	case 'q': {
+	    // up and left
+	    keyAction('w');
+	    keyAction('a');
+	    break;
+	}
+	case 'c': {
+	    // down and right
+	    keyAction('x');
+	    keyAction('d');
+	    break;
+	}
+	case 'z': {
+	    // down and left
+	    keyAction('x');
+	    keyAction('a');
+	    break;
+	}
+	default: {
+	    break;
+	}
+	}
     }
-    case 'w': {
-      // up
-    }
-    case 'x': {
-      // down
-    }
-    case 'd': {
-      // right 
-    }
-    case 'a': {
-      // left
-    }
-    case 'e': {
-      // up and right
-      keyAction('w');
-      keyAction('d');
-    }
-    case 'q': {
-      // up and left
-      keyAction('w');
-      keyAction('a');
-    }
-    case 'c': {
-      // down and right
-      keyAction('x');
-      keyAction('d');
-    }
-    case 'z': {
-      // down and left
-      keyAction('x');
-      keyAction('a');
-    }
-    }
-  }
 }
