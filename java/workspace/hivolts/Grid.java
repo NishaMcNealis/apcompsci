@@ -240,7 +240,6 @@ public class Grid {
 		int y = random.nextInt(Globals.SIDE_LENGTH);
 		if(squares[x][y].getValue() != Globals.FENCE_VALUE) {
 		    moveYou(x-you[0],y-you[1]);
-		    System.out.println(x + "  " + y);
 		    break;
 		}
 	    }
