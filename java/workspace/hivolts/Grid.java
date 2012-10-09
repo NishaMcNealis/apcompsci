@@ -7,9 +7,7 @@ import javax.swing.JOptionPane;
  * @author Max Bernstein, Chris Hinstorff, Marco Valente
  *
  */
-public class Grid {
-    boolean alive = true;
-    
+public class Grid {    
     Square[][] squares = new Square[Globals.SIDE_LENGTH][Globals.SIDE_LENGTH];
     
     //with structure [x,y]
@@ -248,7 +246,7 @@ public class Grid {
 	    if(x >= 0) {
 		moveMho(x, y, i);
 	    }
-	    if (x < 0) {
+	    if (mhoList[i][0] < 0) {
 		totalMhoCount--;
 	    }
 	}
@@ -273,13 +271,11 @@ public class Grid {
     }
     
     public void endGame(String msg) {
-	if (msg == "Loss") {
-	    JOptionPane.showMessageDialog(null,"Game over: you lost.");    
-	}
-	else {
-	    JOptionPane.showMessageDialog(null,"Game over: you won!");
-	}
-	HivoltsBoard.restart = true;
+	HivoltsBoard.endMessage = msg;
+    }
+
+    public void showDialog(String msg) {
+	JOptionPane.showMessageDialog(null,msg);
     }
 
     public void keyAction(char c) {
@@ -300,7 +296,6 @@ public class Grid {
 		    break;
 		}
 	    }
-	    System.out.println(x + "  " + y);
 	    break;
 	}
 	case 'w': {

@@ -9,6 +9,8 @@ import java.applet.*;
 public class HivoltsBoard extends Applet implements KeyListener {
     private static final long serialVersionUID = 1;
     Grid grid = new Grid();
+    public static boolean restart = false;
+    public static String endMessage = "";
     /**
      * Initializes the board and its keylistener
      */
@@ -20,6 +22,19 @@ public class HivoltsBoard extends Applet implements KeyListener {
      * @param g the Graphics object
      */
     public void paint(Graphics g) {
+	if(endMessage != "") {
+	    String msg = endMessage;
+	    endMessage = "";
+	    repaint();
+	    if (msg == "Win") {
+		grid.showDialog("Game over: you won!");
+	    }
+	    else {
+		grid.showDialog("Game over: you lost.");
+	    }
+	    restart = true;
+	    repaint();
+	}
 	if(restart) {
 	    restart = false;
 	    grid = new Grid();
@@ -34,6 +49,7 @@ public class HivoltsBoard extends Applet implements KeyListener {
         
 	grid.paint(g);
     }
+
     /**
      * Moves you and the mhos in response to a keyEvent.
      * @param e the keyEvent called
@@ -42,7 +58,9 @@ public class HivoltsBoard extends Applet implements KeyListener {
 	char c = e.getKeyChar();
 	if (grid.charInArray(c, grid.keyList)) {
 	    grid.keyAction(c);
-	    grid.moveMhos();
+	    if(c != 'j') {
+		grid.moveMhos();
+	    }
 	    repaint();
 	}
     }
