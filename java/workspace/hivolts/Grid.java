@@ -248,7 +248,7 @@ public class Grid {
 	    if(x >= 0) {
 		moveMho(x, y, i);
 	    }
-	    else {
+	    if (x < 0) {
 		totalMhoCount--;
 	    }
 	}
@@ -273,7 +273,12 @@ public class Grid {
     }
     
     public void endGame(String msg) {
-    	JOptionPane.showMessageDialog(null,"game over: you "+msg); 
+	if (msg == "Loss") {
+	    JOptionPane.showMessageDialog(null,"Game over: you lost.");    
+	}
+	else {
+	    JOptionPane.showMessageDialog(null,"Game over: you won!");
+	}
     }
 
     public void keyAction(char c) {
