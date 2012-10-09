@@ -5,3 +5,5 @@
 .#*
 .metadata*
 *.yml
+.settings*
+.settings/*
