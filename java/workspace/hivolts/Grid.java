@@ -284,14 +284,17 @@ public class Grid {
 	}
 	case 'j': {
 	    // jump
+	    int x;
+	    int y;
 	    while(true) {
-		int x = random.nextInt(Globals.SIDE_LENGTH);
-		int y = random.nextInt(Globals.SIDE_LENGTH);
+		x = random.nextInt(Globals.SIDE_LENGTH);
+		y = random.nextInt(Globals.SIDE_LENGTH);
 		if(squares[x][y].getValue() != Globals.FENCE_VALUE) {
 		    moveYou(x-you[0],y-you[1]);
 		    break;
 		}
 	    }
+	    System.out.println(x + "  " + y);
 	    break;
 	}
 	case 'w': {
