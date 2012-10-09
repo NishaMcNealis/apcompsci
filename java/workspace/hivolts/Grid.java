@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.Random;
+import javax.swing.JOptionPane;
 /**
  * Creates a Grid that implements the board and objects.
  * @author Max Bernstein, Chris Hinstorff, Marco Valente
@@ -271,7 +272,7 @@ public class Grid {
     }
     
     public void endGame(String msg) {
-	System.out.println(msg);
+    	JOptionPane.showMessageDialog(null,msg);
     }
 
     public void keyAction(char c) {
