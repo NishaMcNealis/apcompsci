@@ -24,3 +24,6 @@ SIDE_LENGTH: changes the number of tiles in the grid.
 YOU_COUNT: changes the number of YOUs. Though since you all move identically this does not exactly help you.
 FENCE_COUNT: change to a constant number to have direct control over the number of fences. By default it simply is proportional to the size of the grid.
 MHO_COUNT: change to a constant number to have direct control over the number of mhos. By default it simply is proportional to the size of the grid.
+
+You can also go into the Mho.java, You.java, and Square.java classes and edit the color functions to set them to your own color preference.
+Just look at the part that says COLOR.whatever and change 'whatever' to the color of your choice.
