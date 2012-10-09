@@ -10,8 +10,6 @@ Hivolts is a 1970's video game on the PLATO system. This program is a reverse en
   C: down and right
   J: jump
 
-
-MARCO OR MAX WILL WRITE ABOUT THE LIMITATIONS OF OUR PROGRAM HERE
 The program creates an applet called HiVolts that contains a blue dot (you) and
 a bunch of red dots (mhos). The field contains yellow boxes which are the fences
 and allows you to move in 8 different directions. To modify the number of tiles in the
