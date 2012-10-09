@@ -30,7 +30,10 @@ public class HivoltsBoard extends Applet implements KeyListener {
         
 	grid.paint(g);
     }
-
+    /**
+     * Moves you and the mhos in response to a keyEvent.
+     * @param e the keyEvent called
+     */
     public void keyTyped(KeyEvent e) {
 	char c = e.getKeyChar();
 	if (grid.charInArray(c, grid.keyList)) {
@@ -39,7 +42,10 @@ public class HivoltsBoard extends Applet implements KeyListener {
 	    repaint();
 	}
     }
-    
+    /**
+     * Unimplemented methods for keyEvents that are not useful
+     * to this project.
+     */
     public void keyReleased(KeyEvent e){}
     public void keyPressed(KeyEvent e){}
 }
