@@ -116,11 +116,11 @@ public class Grid {
      */
     public int getSign(int n) {//test for n == 0
     	if (n != 0)
-    	{
+	    {
     		return n/abs(n);
-    	}
+	    }
     	else{
-    		return 0;
+	    return 0;
     	}
     }
     /**

@@ -7,8 +7,8 @@ import java.applet.*;
  *
  */
 public class HivoltsBoard extends Applet implements KeyListener {
-	private static final long serialVersionUID = 1;
-	Grid grid = new Grid();
+    private static final long serialVersionUID = 1;
+    Grid grid = new Grid();
     /**
      * Initializes the board and its keylistener
      */
