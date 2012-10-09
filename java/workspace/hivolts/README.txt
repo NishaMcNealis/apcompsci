@@ -12,8 +12,15 @@ Hivolts is a 1970's video game on the PLATO system. This program is a reverse en
 
 
 MARCO OR MAX WILL WRITE ABOUT THE LIMITATIONS OF OUR PROGRAM HERE
-HERE
-HERE
-HERE
-maybe here
-DEFINATELY HERE
+The program creates an applet called HiVolts that contains a blue dot (you) and
+a bunch of red dots (mhos). The field contains yellow boxes which are the fences
+and allows you to move in 8 different directions. To modify the number of tiles in the
+grid you edit the SIDE_LENGTH constant found in the Globals.java file. All of the editable
+functions in HiVolts can be edited in the Globals.java file.
+
+The list of editable functions is here:
+
+SIDE_LENGTH: changes the number of tiles in the grid.
+YOU_COUNT: changes the number of YOUs. Though since you all move identically this does not exactly help you.
+FENCE_COUNT: change to a constant number to have direct control over the number of fences. By default it simply is proportional to the size of the grid.
+MHO_COUNT: change to a constant number to have direct control over the number of mhos. By default it simply is proportional to the size of the grid.
