@@ -1,3 +1,8 @@
+/**
+ * Stores the global variables
+ * @author Max Bernstein, Chris Hinstorff, Marco Valente
+ *
+ */
 public class Globals {
   final static int GRID_SIZE = 32;
   final static int UNIT_SIZE = 24;

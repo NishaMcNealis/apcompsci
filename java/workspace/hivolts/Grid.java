@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Arrays;
 /**
  * Creates a Grid that implements the board and objects.
- * @author marco
+ * @author Max Bernstein, Chris Hinstorff, Marco Valente
  *
  */
 public class Grid {
