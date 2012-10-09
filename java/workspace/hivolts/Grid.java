@@ -230,10 +230,14 @@ generateBlocks(Globals.YOU_VALUE, Globals.YOU_COUNT);
 	}
 	case 'j': {
 	    // jump
-	    int x = random.nextInt(Globals.INNER_LENGTH) + 1;
-	    int y = random.nextInt(Globals.INNER_LENGTH) + 1;
-	    if(squares[x][y].getValue() != Globals.FENCE_VALUE) {
-		moveYou(x-you[0],y-you[1]);
+	    while(true) {
+		int x = random.nextInt(Globals.SIDE_LENGTH);
+		int y = random.nextInt(Globals.SIDE_LENGTH);
+		if(squares[x][y].getValue() != Globals.FENCE_VALUE) {
+		    moveYou(x-you[0],y-you[1]);
+		    System.out.println(x + "  " + y);
+		    break;
+		}
 	    }
 	    break;
 	}
