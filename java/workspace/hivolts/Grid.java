@@ -279,6 +279,7 @@ public class Grid {
 	else {
 	    JOptionPane.showMessageDialog(null,"Game over: you won!");
 	}
+	HivoltsBoard.restart = true;
     }
 
     public void keyAction(char c) {

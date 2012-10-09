@@ -7,8 +7,9 @@ import java.applet.*;
  *
  */
 public class HivoltsBoard extends Applet implements KeyListener {
-	private static final long serialVersionUID = 1;
-	Grid grid = new Grid();
+    private static final long serialVersionUID = 1;
+    Grid grid = new Grid();
+    public static boolean restart = false; 
     /**
      * Initializes the board and its keylistener
      */
@@ -20,6 +21,10 @@ public class HivoltsBoard extends Applet implements KeyListener {
      * @param g the Graphics object
      */
     public void paint(Graphics g) {
+	if(restart) {
+	    restart = false;
+	    grid = new Grid();
+	}
 	//draw grid lines
 	g.setColor(Color.BLACK);
 	for(int i = 0; i < Globals.SIDE_LENGTH; i++) {
