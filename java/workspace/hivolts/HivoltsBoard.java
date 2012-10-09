@@ -20,6 +20,10 @@ public class HivoltsBoard extends Applet implements KeyListener {
      * @param g the Graphics object
      */
     public void paint(Graphics g) {
+	if(restart) {
+	    restart = false;
+	    grid = new Grid();
+	}
 	//draw grid lines
 	g.setColor(Color.BLACK);
 	for(int i = 0; i < Globals.SIDE_LENGTH; i++) {
