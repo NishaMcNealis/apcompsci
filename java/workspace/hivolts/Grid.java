@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.util.Random;
 import java.util.Arrays;
-
+/**
+ * Creates a Grid that implements the board and objects.
+ * @author marco
+ *
+ */
 public class Grid {
     boolean alive = true;
     
@@ -18,7 +22,9 @@ public class Grid {
     char[] keyList  = new char[]{'s','j','w','x','d','a','e','q','c','z'};
     
     Random random   = new Random();
-
+    /**
+     * Default constructor, creates the Grid
+     */
     public Grid() {
 	int bcount = 0;
 	int icount = 0;
