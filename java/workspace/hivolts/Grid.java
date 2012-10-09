@@ -64,7 +64,11 @@ public class Grid {
 	    squares[all[i][0]][all[i][1]].paint(g);
 	}
     }
-    
+    /**
+     * Creates a number of blocks as specified
+     * @param blockValue the global block value constant
+     * @param count the number of blocks to create
+     */
     public void generateBlocks(int blockValue, int count) {
 	for(int i = 0; i < count; i++) {
 	    while(true) {
@@ -83,23 +87,41 @@ public class Grid {
 	    }
 	}
     }
-    
+    /**
+     * Finds the specified character in the array
+     * @param c the character to be found
+     * @param s the array being checked
+     * @return true if character is in array, otherwise false
+     */
     public boolean charInArray(char c, char[] s) {
 	for (int i = 0; i < s.length; i++) {
 	    if (s[i] == c) return true;
 	}
 	return false;
     }
-    
+    /**
+     * Returns the absolute value of the inputted integer
+     * @param n the integer input
+     * @return |n|
+     */
     public int abs(int n) {
 	if(n > 0) return n;
 	else return -n;
     }
-    
-    public int getSign(int n) {
+    /**
+     * Returns the sign of the integer
+     * @param n the integer to be tested
+     * @return 1 if n is positive, -1 if n is negative
+     */
+    public int getSign(int n) {//test for n == 0
 	return n/abs(n);
     }
-    
+    /**
+     * Moves the specified mho to the specified coordinates
+     * @param x the x coordinate destination
+     * @param y the y coordinate destination
+     * @param n the specified mho
+     */
     public void forcedMoveMho(int x, int y, int n) {
 	if(squares[x][y].getValue() == Globals.BLANK_VALUE) {
 	    squares[x][y].setValue(Globals.MHO_VALUE);
@@ -116,7 +138,14 @@ public class Grid {
 	    mhoList[n][0] = -1;
 	}
     }
-    
+    /**
+     * Test if the mho can be moved to the specified location
+     * @param x x coordinate of destination
+     * @param y y coordinate of destination
+     * @param n the specified mho
+     * @param isFenceSquareValid whether a fence is a valid destination
+     * @return true if mho can move to destination, otherwise false
+     */
     public boolean unforcedMoveMho(int x, int y, int n, boolean isFenceSquareValid) {
 	if(squares[x][y].getValue() == Globals.BLANK_VALUE) {
 	    squares[x][y].setValue(Globals.MHO_VALUE);
@@ -140,7 +169,12 @@ public class Grid {
 	}
 	
     }
-    
+    /**
+     * Moves the mho to the specified destination
+     * @param x the x coordinate of the destination
+     * @param y the y coordinate of the destination
+     * @param n the specified mho
+     */
     public void moveMho(int x, int y, int n) {
 	boolean toContinue = true;
 	squares[x][y].setValue(Globals.BLANK_VALUE);
@@ -196,7 +230,9 @@ public class Grid {
 	    }
 	}
     }
-    
+    /**
+     * Moves the mhos by calling the mutators
+     */
     public void moveMhos() {
 	int totalMhoCount = mhoList.length;
 	for (int i = 0; i < mhoList.length; i++) {
