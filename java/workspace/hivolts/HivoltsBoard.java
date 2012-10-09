@@ -7,15 +7,15 @@ public class HivoltsBoard extends Applet implements KeyListener {
     Grid grid = new Grid();
 
     public void init() {
-	addKeyListener( this );
+	addKeyListener(this);
     }
 
     public void paint(Graphics g) {
 	//draw grid lines
 	g.setColor(Color.BLACK);
-	for(int i = 0; i < 13; i++) {
-	    g.fillRect(0, i * Globals.GRID_SIZE - 1, 384, 2);
-	    g.fillRect(i * Globals.GRID_SIZE - 1, 0, 2, 384);
+	for(int i = 0; i < Globals.SIDE_LENGTH; i++) {
+	    g.fillRect(0, i * Globals.GRID_SIZE - 1, Globals.SIDE_LENGTH_PX, 2);
+	    g.fillRect(i * Globals.GRID_SIZE - 1, 0, 2, Globals.SIDE_LENGTH_PX);
 	}
 	//end grid lines
         
@@ -24,10 +24,13 @@ public class HivoltsBoard extends Applet implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
 	char c = e.getKeyChar();
-       	grid.keyAction(c);
-	repaint();	
+	if (grid.charInArray(c, grid.keyList)) {
+	    grid.keyAction(c);
+	    grid.moveMhos();
+	    repaint();
+	}
     }
-
+    
     public void keyReleased(KeyEvent e){}
     public void keyPressed(KeyEvent e){}
 }
