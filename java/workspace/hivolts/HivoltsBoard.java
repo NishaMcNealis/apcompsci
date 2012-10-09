@@ -1,4 +1,3 @@
-import javax.swing.JApplet;
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;

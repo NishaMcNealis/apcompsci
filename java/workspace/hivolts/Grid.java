@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Random;
-import java.util.Arrays;
 /**
  * Creates a Grid that implements the board and objects.
  * @author Max Bernstein, Chris Hinstorff, Marco Valente
