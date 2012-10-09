@@ -7,13 +7,13 @@ import java.awt.*;
  */
 public class You extends Player {
 	/**
-	 * Creates a blue Player at the coordinate (0,0)
+	 * Creates a blue You at the coordinate (0,0)
 	 */
     public You() {
         super(0, 0, Color.BLUE);
     }
     /**
-     * Creates a blue Player at the coordinate (x,y)
+     * Creates a blue You at the coordinate (x,y)
      * @param x the x coordinate
      * @param y the y coordinate
      */
