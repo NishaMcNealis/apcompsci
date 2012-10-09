@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.Random;
+
 import javax.swing.JOptionPane;
 /**
  * Creates a Grid that implements the board and objects.
@@ -272,7 +273,7 @@ public class Grid {
     }
     
     public void endGame(String msg) {
-    	JOptionPane.showMessageDialog(null,msg);
+    	JOptionPane.showMessageDialog(null,"game over: you "+msg); 
     }
 
     public void keyAction(char c) {
