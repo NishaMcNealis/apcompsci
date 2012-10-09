@@ -110,10 +110,16 @@ public class Grid {
     /**
      * Returns the sign of the integer
      * @param n the integer to be tested
-     * @return 1 if n is positive, -1 if n is negative
+     * @return 1 if n is positive, -1 if n is negative, and 0 if n is zero
      */
     public int getSign(int n) {//test for n == 0
-	return n/abs(n);
+    	if (n != 0)
+    	{
+    		return n/abs(n);
+    	}
+    	else{
+    		return 0;
+    	}
     }
     /**
      * Moves the specified mho to the specified coordinates
