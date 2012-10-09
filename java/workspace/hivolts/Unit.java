@@ -11,11 +11,11 @@ public abstract class Unit {
     ycoord = y;
   }
 
-  public void getX(int x) {
-    xcoord = x;
+  public int getX() {
+    return xcoord;
   }
-  public void getY(int y) {
-    ycoord = y;
+  public int getY() {
+    return ycoord;
   }
 
   public abstract void paint(Graphics g);

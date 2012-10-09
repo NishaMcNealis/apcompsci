@@ -24,9 +24,7 @@ public class HivoltsBoard extends Applet implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
 	char c = e.getKeyChar();
-	System.out.println(c);
        	grid.keyAction(c);
-	grid.moveMhos();
 	repaint();	
     }
 
