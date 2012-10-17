@@ -33,10 +33,10 @@ class Deck {
   }
 
   public PokerHand deal() {
-    Deck theDeck = new Deck();
-    PokerHand theHand = new PokerHand(5);
+    PokerHand theHand = new PokerHand();
+    shuffle();
     for(int i = 0; i < 5; i++) {
-      theHand.cards[i] = theDeck.cards[i];
+      theHand.cards[i] = cards[i];
     }
     return theHand;
   }

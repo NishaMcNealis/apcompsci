@@ -25,8 +25,8 @@ public class CardSoln3 {
       hands.add(hand);
     }
 
-    PokerHand[] thousand = new PokerHand[1000];
-    Deck[] tdeck = new Deck[1000];
+    PokerHand[] thousand = new PokerHand[10000];
+    Deck tdeck = new Deck();
 
     int flushes, threes;
     flushes = threes = 0;
@@ -34,10 +34,7 @@ public class CardSoln3 {
 
     for (int i = 0; i < thousand.length; i++) {
       thousand[i] = new PokerHand();
-      tdeck[i] = new Deck();
-      tdeck[i].shuffle();
-
-      thousand[i] = tdeck[i].deal();
+      thousand[i] = tdeck.deal();
       thousand[i].sort();
 
       if (thousand[i].hasFlush()) {
@@ -48,14 +45,17 @@ public class CardSoln3 {
       }
     }
 
-    flushprob = ((double) flushes)/1000;
-    threesprob = ((double) threes)/1000;
-    
+    flushprob = ((double) flushes)/10000.0;
+    threesprob = ((double) threes)/10000.0;
+
+    System.out.println(flushes+","+flushprob);
+    System.out.println(threes+","+threesprob);
+        
   }
     
-  public void printHands(PokerHand hands) {
+  public void printHands(ArrayList<PokerHand> hands) {
     while(hands.iterator().hasNext()) {
-      print(hands.iterator().next().toString());
+      System.out.println(hands.iterator().next().toString());
     }
   }
 

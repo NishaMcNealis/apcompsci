@@ -1,4 +1,12 @@
 class PokerHand extends Deck {
+  public PokerHand() {
+    this.cards = new Card[5];
+  }
+
+  public PokerHand(int a) {
+    this.cards = new Card[a];
+  }
+
   public void print() {
     for (int i=0; i<cards.length; i++) {
       cards[i].print();
@@ -22,7 +30,7 @@ class PokerHand extends Deck {
       ranks[i] = 0;
     }
     for (int i = 0; i < cards.length; i++) {
-      ranks[card.rank]++;
+      ranks[cards[i].rank]++;
     }
     for (int i = 0; i < ranks.length; i++) {
       if (ranks[i] >= 3) {
