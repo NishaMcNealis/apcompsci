@@ -2,7 +2,7 @@
  * A Card represents a playing card with rank and suit.
  */
 class Card {
-  int suit, rank;
+  public int suit, rank;
 
   static String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
   static String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
@@ -72,4 +72,4 @@ class Card {
 /*
  * A Deck contains an array of cards.
  */
-}
+//}

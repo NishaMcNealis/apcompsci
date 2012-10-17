@@ -12,7 +12,7 @@ class Deck {
    * Makes an array of 52 cards.
    */
   public Deck() {
-    this.cards = new Card [52];
+    this.cards = new Card[52];
 	
     int index = 0;
     for (int suit = 0; suit <= 3; suit++) {
@@ -34,7 +34,7 @@ class Deck {
 
   public PokerHand deal() {
     Deck theDeck = new Deck();
-    PokerHand theHand = new Hand(5);
+    PokerHand theHand = new PokerHand(5);
     for(int i = 0; i < 5; i++) {
       theHand.cards[i] = theDeck.cards[i];
     }

@@ -8,6 +8,7 @@
  */
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class CardSoln3 {
   /*
@@ -23,6 +24,33 @@ public class CardSoln3 {
       deck.shuffle();
       hands.add(hand);
     }
+
+    PokerHand[] thousand = new PokerHand[1000];
+    Deck[] tdeck = new Deck[1000];
+
+    int flushes, threes;
+    flushes = threes = 0;
+    double flushprob, threesprob;
+
+    for (int i = 0; i < thousand.length; i++) {
+      thousand[i] = new PokerHand();
+      tdeck[i] = new Deck();
+      tdeck[i].shuffle();
+
+      thousand[i] = tdeck[i].deal();
+      thousand[i].sort();
+
+      if (thousand[i].hasFlush()) {
+        flushes++;
+      }
+      if (thousand[i].hasThreeKind()) {
+        threes++;
+      }
+    }
+
+    flushprob = ((double) flushes)/1000;
+    threesprob = ((double) threes)/1000;
+    
   }
     
   public void printHands(PokerHand hands) {
