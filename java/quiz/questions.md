@@ -12,8 +12,8 @@
 #Topic: Graphs
 (Arman)
 ## Question Three
-* Answer one
-* Answer two
+* Nodes, Lines, Vertices (Identify vimg) etc.
+* Multiple Choice (Some other thing)
 
 #Topic: Graph Order
 (Marco)
