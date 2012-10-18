@@ -15,7 +15,7 @@
 * Nodes, Lines, Vertices (Identify vimg) etc.
 * Multiple Choice (Some other thing)
 
-#Topic: Graph Order
+#Topic: Order of Growth
 (Marco)
 
 ## Question Four
