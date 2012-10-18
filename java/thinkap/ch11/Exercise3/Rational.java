@@ -57,3 +57,11 @@ class Rational {
     den = den/g;
   }
 }
+
+/*
+
+Generally, object methods will be more concise, especially if you already
+have instances. The more natural way is context dependent; if you want Math.random(),
+you're not going to want to create a Math instance. That's crazy talk.
+
+*/
