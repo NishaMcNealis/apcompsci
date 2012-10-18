@@ -3,7 +3,7 @@
 ##Question Four
 ### Write the following iterative functions recursively.
 <pre>public static int j(int x) {
-  if (x < 2) {
+  if (x &lt; 2) {
     return 1;
   }
   else {
@@ -12,7 +12,7 @@
 }
 
 public static int z(int x) {
-  if (x < 2) {
+  if (x &lt; 2) {
     return 1;
   }
   else {
