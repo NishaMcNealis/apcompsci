@@ -20,3 +20,5 @@
 * 2) O(2n)
 * 3) O(n^2)
 * 4) O(2 * n^2)
+
+* Correct Answer: 3) O(n^2)
