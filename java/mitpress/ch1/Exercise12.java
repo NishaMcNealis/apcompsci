@@ -2,7 +2,11 @@ import java.util.Arrays;
 
 class Exercise12 {
     public static void main(String[] args) {
-	System.out.println(compute(4,2,new int[]{1}));
+	//row and column with which to compute. Starts counting at 0.
+	int row = 4;
+	int column = 2;
+
+	System.out.println(compute(row,column,new int[]{1}));
     }
 
     public static int compute(int nRow, int nColumn, int[] nList) {
