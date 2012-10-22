@@ -1,4 +1,4 @@
-class Exercise1 {
+class Exercise11 {
   public static void main(String [] args) {
     System.out.println("Recursive:");
     System.out.println("  3 :  " + recursive(3));
