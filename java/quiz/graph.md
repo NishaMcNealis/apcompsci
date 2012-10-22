@@ -2,12 +2,12 @@
 (Arman)
 ## Question Three
 ### Nodes, Lines, Vertices (Identify vimg) etc.
-### (IMAGE HERE)
+### ![That guy that's the president and stuff](http://www.wired.com/images_blogs/photos/uncategorized/2008/03/13/barack_obama_thumb.jpg)
 * A - Vertice
 * B - Edge
 * C - Coordinate
 * D - Node
-* E - 
+* E - Bacon
 
 ### Multiple Choice (Some other thing)
 * A - 
