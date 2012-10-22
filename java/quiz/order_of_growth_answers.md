@@ -17,8 +17,8 @@
 } </pre>
 
 * 1) O(n)
-* 2) O(2n)
+* 2) O(2^n)
 * 3) O(n^2)
-* 4) O(2 * n^2)
+* 4) O(nlog(n))
 
 * Correct Answer: 3) O(n^2)
