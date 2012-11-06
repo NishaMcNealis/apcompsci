@@ -12,7 +12,7 @@ class Exercise11 {
     if(n <= 3)
       return n;
     else
-      return recursive(n-1) + 2 * recursive(n-2) + 3 * recursive(n-3); 
+      return recursive(n-1) + 2*recursive(n-2) + 3*recursive(n-3); 
   }
 
   public static int iterative(int n) {
