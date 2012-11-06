@@ -1,4 +1,12 @@
-max = 123456789
+=begin
+This is some code I wrote for math class, to figure out the answer to one of the CAML questions.
+The question asks how many numbers there are in some interval where the digits are unique and 
+increasing in value, left to right.
+
+This code solves that via brute force.
+=end
+max = 123456789 #Top value
+
 def in_order?(num)
   s = num.to_s
   t=0
