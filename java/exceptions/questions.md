@@ -10,7 +10,7 @@ All exceptions of the type Exception are caught, meaning all exceptions are caug
 Yes, the catch block for ArithmeticException can never be called, because the ArithmeticException is also an Exception. Therefore, the code will not compile.
 
 ## Question 4
-* a. 3, compile error
-* b. 1, error
-* c. 4, no exception
-* d. 2, checked exception
+* a. compile error
+* b. checked exception
+* c. no exception
+* d. error

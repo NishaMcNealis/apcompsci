@@ -35,8 +35,23 @@ public class ListOfNumbers {
         }
     }
 //end code from oracle
-    public void readList() {
-	
-
+    public void readList(File file) {
+	try {
+	    FileInputStream fStream = new FileInputStream(file);
+	    DataInputStream dStream = new DataInputStream(fStream);
+	    BufferedReader reader   = new BufferedReader(new InputStreamReader(dStream));
+	    String line;
+	    while((line = reader.readLine()) != null) {
+		int i = Integer.parseInt(line);
+		System.out.println(i);
+		victor.addElement(i);
+	    }
+	}
+	catch(FileNotFoundException e) {
+	    System.err.println("File not found.");
+	}
+	catch(IOException e) {
+	    System.err.println(e.getMessage());
+	}
     }
 }
