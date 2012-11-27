@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.lang.reflect.Method;
-
+import java.lang.Integer;
 public class Mapcar {
     
     public static void main(String[] args) {
@@ -11,17 +11,32 @@ public class Mapcar {
 	    }};
 	Class[] paramtypes = new Class[1];
 	paramtypes[0] = ArrayList.class;
-
+     
+	try {
+	    Method meth = Mapcar.class.getMethod("function", paramtypes);
+	}
+	catch (NoSuchMethodException e) {
+	    System.err.println("No method found");
+	}
 	Mapcar m = new Mapcar();
-	System.out.println(m.mapcar(m, Mapcar.class.getMethod("function", paramtypes), list).toString());
+	try {
+	    System.out.println(m.mapcar(m, meth, list).toString());
+	}
+	catch (error e) {}
     }
     
     public static ArrayList<Integer> mapcar(Object o, Method f, ArrayList<Integer> a) {
 	Object[] params = new Object[1];
-	for(int i = 0; i < a.size(); i++) {
-	    params[0] = a.get(i);
-	    System.out.println(f.invoke(o, params));
-// a.set(i, f.invoke(o, params));
+	try {
+	    for(int i = 0; i < a.size(); i++) {
+		params[0] = a.get(i);
+	
+		a.set(i, Integer.parseInt(f.invoke(o, params).toString()));
+	  
+	    }
+	}
+	catch(Exception e) {
+	    System.err.println(e.toString());
 	}
 	return a;
     }
