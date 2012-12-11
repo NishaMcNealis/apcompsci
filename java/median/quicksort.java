@@ -8,27 +8,28 @@ class quicksort {
 
     for (int i = 0; i < 15; i++) randl.add(rand.nextInt(100));
 
-    System.out.println(randl.toString());
-    System.out.println(quicksort(randl).toString());
+    System.out.println(quicksort(randl, randl.size()/2));
   }
 
-  public static ArrayList<Integer> quicksort(ArrayList<Integer> a) {
-    if (a.size() <= 1) return a;
+  public static int quicksort(ArrayList<Integer> a, int med) {
+    if (a.size() == 1) return a.get(0);
 
-    int p = a.get(0);
-    a.remove(0);
+    Random rand = new Random();
+    int r = rand.nextInt(a.size());
 
-    ArrayList<Integer> less = new ArrayList<Integer>();
-    ArrayList<Integer> greater = new ArrayList<Integer>();
+    int p = a.get(r);
+    a.remove(r);
+
+    ArrayList<Integer> less = new ArrayList<Integer>(), greater = new ArrayList<Integer>();
 
     for (int i = 0; i < a.size(); i++) {
-      if (a.get(i) <= p) less.add(a.get(i));
-      else greater.add(a.get(i));
+      int el = a.get(i);
+      if (el <= p) less.add(el);
+      else greater.add(el);
     }
 
-    less = quicksort(less);
-    less.add(p);
-    less.addAll(quicksort(greater));
-    return less;
+    if (med <= less.size()) return quicksort(less, med);
+    else if (med > less.size()-greater.size()) return quicksort(greater, med-(a.size()-greater.size()));
+    else return p;
   }
 }
