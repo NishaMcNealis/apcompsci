@@ -6,15 +6,27 @@ public class ArrayList {
 	//returns the arraylist
     }
 
-    public static int Insert(int samplesize, int datasize) {
+  public static int Insert(int element) {
 
-    }
+  }
 
-    public static int Search(int samplesize, int datasize) {
+  public static int InsertTest(int samplesize, int datasize) {
+    
+  }
 
-    }
+  public static int Search(int element) {
 
-    public static int Delete(int samplesize, int datasize) {
+  }
 
-    }
+  public static int SearchTest(int samplesize, int datasize) {
+
+  }
+
+  public static int Delete(int index) {
+
+  }
+
+  public static int DeleteTest(int samplesize, int datasize) {
+    
+  }
 }
