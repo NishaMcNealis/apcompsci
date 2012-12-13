@@ -1,3 +1,5 @@
+B1;3001;0cimport java.util.Random;
+
 public class ArrayTest implements DataStructure {
 
   public static int[] Construct(int samplesize, int datasize) {
@@ -6,7 +8,7 @@ public class ArrayTest implements DataStructure {
     //returns the array
   }
 
-  public static int Insert(int element) {
+  public static void Insert(int element) {
 
   }
 
@@ -14,7 +16,7 @@ public class ArrayTest implements DataStructure {
     
   }
 
-  public static int Search(int element) {
+  public static void Search(int element) {
 
   }
 
@@ -22,7 +24,7 @@ public class ArrayTest implements DataStructure {
 
   }
 
-  public static int Delete(int index) {
+  public static void Delete(int index) {
 
   }
 

@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.HashMap;
+
 public class HashMapTest implements DataStructure {
 
   public static HashMap Construct(int samplesize, int datasize) {
@@ -6,7 +9,7 @@ public class HashMapTest implements DataStructure {
     //returns the hashmap
   }
 
-  public static int Insert(int element) {
+  public static void Insert(int element) {
 
   }
 
@@ -14,7 +17,7 @@ public class HashMapTest implements DataStructure {
     
   }
 
-  public static int Search(int element) {
+  public static void Search(int element) {
 
   }
 
@@ -22,7 +25,7 @@ public class HashMapTest implements DataStructure {
 
   }
 
-  public static int Delete(int index) {
+  public static void Delete(int index) {
 
   }
 

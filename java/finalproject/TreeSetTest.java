@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.TreeSet;
+
 public class TreeSetTest implements DataStructure {
 
   public static TreeSet<Integer> Construct(int samplesize, int datasize) {
@@ -6,7 +9,7 @@ public class TreeSetTest implements DataStructure {
     //returns the treeset
   }
 
-  public static int Insert(int element) {
+  public static void Insert(int element) {
 
   }
 
@@ -14,7 +17,7 @@ public class TreeSetTest implements DataStructure {
     
   }
 
-  public static int Search(int element) {
+  public static void Search(int element) {
 
   }
 
@@ -22,7 +25,7 @@ public class TreeSetTest implements DataStructure {
 
   }
 
-  public static int Delete(int index) {
+  public static void Delete(int index) {
 
   }
 

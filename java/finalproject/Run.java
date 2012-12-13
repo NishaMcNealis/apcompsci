@@ -4,7 +4,7 @@ public class Run {
 
 	
   }
-    
+
   public static void runops() {
     //runs all of the operations set out in other files
   }

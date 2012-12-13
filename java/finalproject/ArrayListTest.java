@@ -1,12 +1,17 @@
-public class ArrayList {
+import java.util.Random;
+import java.util.ArrayList;
+
+public class ArrayListTest {
 
   public static ArrayList<Integer> Construct(int samplesize, int datasize) {
+    ArrayList<Integer> a = new ArrayList<Integer>();
+    
     //defines an arraylist with specified length
     //creates random ints between 0 and datasize to fill each slot
     //returns the arraylist
   }
 
-  public static int Insert(int element) {
+  public static void Insert(int element) {
 
   }
 
@@ -14,7 +19,7 @@ public class ArrayList {
     
   }
 
-  public static int Search(int element) {
+  public static void Search(int element) {
 
   }
 
@@ -22,7 +27,7 @@ public class ArrayList {
 
   }
 
-  public static int Delete(int index) {
+  public static void Delete(int index) {
 
   }
 
