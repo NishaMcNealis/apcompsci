@@ -1,10 +1,10 @@
 public class ArrayTest implements DataStructure {
 
-    public static int[] Construct(int samplesize, int datasize) {
-	//defines an array with specified length
-	//creates random ints between 0 and datasize to fill each slot
-	//returns the array
-    }
+  public static int[] Construct(int samplesize, int datasize) {
+    //defines an array with specified length
+    //creates random ints between 0 and datasize to fill each slot
+    //returns the array
+  }
 
   public static int Insert(int element) {
 
