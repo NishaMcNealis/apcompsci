@@ -1,6 +1,6 @@
 public interface DataStructure {
 
-  public static int Insert(int element);
+  public static void Insert(int element);
 
   public static int InsertTest(int samplesize, int datasize);
   //calls Construct method of class
@@ -10,7 +10,7 @@ public interface DataStructure {
   //returns time spent
     
 
-  public static int Search(int element);
+  public static void Search(int element);
 
   public static int SearchTest(int samplesize, int datasize);
   //calls Construct method of class
@@ -19,7 +19,7 @@ public interface DataStructure {
   //ends timer
   //returns time spent
 
-  public static int Delete(int index);
+  public static void Delete(int index);
 
   public static int DeleteTest(int samplesize, int datasize);
   //calls Construct method of class
