@@ -3,20 +3,18 @@ import java.util.ArrayList;
 
 public class ArrayListTest {
 
-  public static ArrayList<Integer> Construct(int samplesize, int datasize) {
-    ArrayList<Integer> a = new ArrayList<Integer>();
-    
-    //defines an arraylist with specified length
-    //creates random ints between 0 and datasize to fill each slot
-    //returns the arraylist
-  }
+  public static ArrayList<Integer> a;
 
   public static void Insert(int element) {
-
+    a.push(element);
   }
 
   public static int InsertTest(int samplesize, int datasize) {
-    
+    a = new ArrayList<Integer>();
+    Random rand = new Random();
+    for (int i = 0; i < samplesize; i++) {
+      a.push(rand.nextInt(datasize));
+    }
   }
 
   public static void Search(int element) {
