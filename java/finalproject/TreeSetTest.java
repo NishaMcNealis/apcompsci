@@ -3,35 +3,54 @@ import java.util.TreeSet;
 
 public class TreeSetTest implements DataStructure {
 
-  //declare public treeset here to use in code
-
-  public static TreeSet<Integer> Construct(int samplesize, int datasize) {
-    //defines an treeset with specified length
-    //creates random ints between 0 and datasize to fill each slot
-    //returns the treeset
-  }
+  public static TreeSet<Integer> t;
 
   public static void Insert(int element) {
-
+    t.add(element);
   }
 
   public static int InsertTest(int samplesize, int datasize) {
-    
+    t = new TreeSet<Integer>();
+    Random rand = new Random();
+
+    int start = System.nanoTime();
+    for (int i = 0; i < samplesize; i++) {
+      Insert(rand.nextInt(datasize));
+    }
+    return System.nanoTime()-start;
   }
 
   public static void Search(int element) {
+    Iterator<Integer> it = t.iterator();
+    int i = 0;
 
+    while (it.hasNext()) {
+      if (element == it.next()) {
+        break;
+      }
+      else {
+        i++;
+      }
+    }
   }
 
   public static int SearchTest(int samplesize, int datasize) {
+    Random rand = new Random();
 
+    int start = System.nanoTime();
+    Search(rand.nextInt(datasize));
+    return System.nanoTime()-start;
   }
-
-  public static void Delete(int index) {
-
+  
+  public static void Delete(int element) {
+    t.remove(element);
   }
 
   public static int DeleteTest(int samplesize, int datasize) {
-    
+    Random rand = new Random();
+
+    int start = System.nanoTime();
+    Delete(rand.nextInt(datasize)); // by element, not index
+    return System.nanoTime()-start;
   }
 }

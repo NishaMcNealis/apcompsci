@@ -33,7 +33,7 @@ public class ArrayListTest {
 
     int start = System.nanoTime();
     Search(rand.nextInt(datasize));
-    return System.nanoTime-start;
+    return System.nanoTime()-start;
   }
 
   public static void Delete(int index) {
