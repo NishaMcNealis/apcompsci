@@ -3,6 +3,8 @@ import java.util.HashMap;
 
 public class HashMapTest implements DataStructure {
 
+  //declare public hashmap here to use in code
+
   public static HashMap Construct(int samplesize, int datasize) {
     //defines a hashmap with specified length
     //creates random ints between 0 and datasize to fill each slot

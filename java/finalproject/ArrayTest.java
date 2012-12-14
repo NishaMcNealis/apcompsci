@@ -2,6 +2,8 @@ B1;3001;0cimport java.util.Random;
 
 public class ArrayTest implements DataStructure {
 
+  public static int[] a;
+
   public static int[] Construct(int samplesize, int datasize) {
     //defines an array with specified length
     //creates random ints between 0 and datasize to fill each slot

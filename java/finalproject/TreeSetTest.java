@@ -3,6 +3,8 @@ import java.util.TreeSet;
 
 public class TreeSetTest implements DataStructure {
 
+  //declare public treeset here to use in code
+
   public static TreeSet<Integer> Construct(int samplesize, int datasize) {
     //defines an treeset with specified length
     //creates random ints between 0 and datasize to fill each slot
