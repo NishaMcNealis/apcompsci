@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class ArrayListTest {
 
-  public static ArrayList<Integer> a;
+  public ArrayList<Integer> a;
 
   public void Insert(int element) {
     a.add(element);
@@ -13,10 +13,12 @@ public class ArrayListTest {
     a = new ArrayList<Integer>();
     Random rand = new Random();
 
-    long start = System.nanoTime();
     for (int i = 0; i < samplesize; i++) {
       Insert(rand.nextInt(datasize+1));
     }
+
+    long start = System.nanoTime();
+    Insert(rand.nextInt(datasize+1));
     return System.nanoTime()-start;
   }
 
@@ -29,6 +31,7 @@ public class ArrayListTest {
   }
 
   public long SearchTest(int samplesize, int datasize) {
+    InsertTest(samplesize, datasize);
     Random rand = new Random();
 
     long start = System.nanoTime();
@@ -41,6 +44,7 @@ public class ArrayListTest {
   }
 
   public long DeleteTest(int samplesize, int datasize) {
+    InsertTest(samplesize, datasize);
     Random rand = new Random();
 
     long start = System.nanoTime();
