@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class ArrayTest implements DataStructure {
 
-  public static int[] a = new int[0];
+  public static int[] a;
 
   public static void Insert(int element) {
     int[] b = new int[a.length + 1];
