@@ -24,9 +24,12 @@ public class Run {
           search_avg += al.SearchTest(i,j);
           del_avg += al.DeleteTest(i,j);
         }
-        System.out.println(String.format("ArrayList,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg));
+	del_avg /= NUM_TRIALS_PER;
+	ins_avg /= NUM_TRIALS_PER;
+	del_avg /= NUM_TRIALS_PER;
+        System.out.printf("ArrayList,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
 
-        /*        
+
         // testing array
         ArrayTest a = new ArrayTest();
         ins_avg = search_avg = del_avg = 0;
@@ -35,8 +38,11 @@ public class Run {
           search_avg += a.SearchTest(j,i);
           del_avg += a.DeleteTest(j,i);
         }
-        System.out.println(String.format("Array,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg));
-        
+	del_avg /= NUM_TRIALS_PER;
+	ins_avg /= NUM_TRIALS_PER;
+	del_avg /= NUM_TRIALS_PER;
+        System.out.printf("Array,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
+
 
         // testing treeset
         TreeSetTest ts = new TreeSetTest();
@@ -46,18 +52,24 @@ public class Run {
           search_avg += ts.SearchTest(j,i);
           del_avg += ts.DeleteTest(j,i);
         }
-        System.out.println(String.format("TreeSet,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg));
+	del_avg /= NUM_TRIALS_PER;
+	ins_avg /= NUM_TRIALS_PER;
+	del_avg /= NUM_TRIALS_PER;
+        System.out.printf("TreeSet,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
+
         
         // testing hashmap
         HashMapTest hm = new HashMapTest();
         ins_avg = search_avg = del_avg = 0;
         for(int k = 0; k < NUM_TRIALS_PER; k++) {
-          ins_avg += hm.InsertTest(j,i);
-          search_avg += hm.SearchTest(j,i);
-          del_avg += hm.DeleteTest(j,i);
+	  ins_avg += hm.InsertTest(i,j);
+          search_avg += hm.SearchTest(i,j);
+          del_avg += hm.DeleteTest(i,j);
         }
-        System.out.println(String.format("HashMap,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg));
-        */
+	del_avg /= NUM_TRIALS_PER;
+	ins_avg /= NUM_TRIALS_PER;
+	del_avg /= NUM_TRIALS_PER;
+        System.out.printf("HashMap,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
       }
     }
   }

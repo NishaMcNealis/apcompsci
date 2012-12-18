@@ -48,7 +48,7 @@ public class ArrayListTest {
     Random rand = new Random();
 
     long start = System.nanoTime();
-    Delete(rand.nextInt(datasize+1));
+    Delete(rand.nextInt(samplesize));
     return System.nanoTime()-start;
   }
 }
