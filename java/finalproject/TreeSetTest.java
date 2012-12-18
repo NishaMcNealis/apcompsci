@@ -1,26 +1,27 @@
 import java.util.Random;
 import java.util.TreeSet;
+import java.util.Iterator;
 
 public class TreeSetTest implements DataStructure {
 
   public static TreeSet<Integer> t;
 
-  public static void Insert(int element) {
+  public void Insert(int element) {
     t.add(element);
   }
 
-  public static int InsertTest(int samplesize, int datasize) {
+  public long InsertTest(int samplesize, int datasize) {
     t = new TreeSet<Integer>();
     Random rand = new Random();
 
-    int start = System.nanoTime();
+    long start = System.nanoTime();
     for (int i = 0; i < samplesize; i++) {
-      Insert(rand.nextInt(datasize));
+      Insert(rand.nextInt(datasize+1));
     }
     return System.nanoTime()-start;
   }
 
-  public static void Search(int element) {
+  public void Search(int element) {
     Iterator<Integer> it = t.iterator();
     int i = 0;
 
@@ -34,23 +35,23 @@ public class TreeSetTest implements DataStructure {
     }
   }
 
-  public static int SearchTest(int samplesize, int datasize) {
+  public long SearchTest(int samplesize, int datasize) {
     Random rand = new Random();
 
-    int start = System.nanoTime();
-    Search(rand.nextInt(datasize));
+    long start = System.nanoTime();
+    Search(rand.nextInt(datasize+1));
     return System.nanoTime()-start;
   }
   
-  public static void Delete(int element) {
+  public void Delete(int element) {
     t.remove(element);
   }
 
-  public static int DeleteTest(int samplesize, int datasize) {
+  public long DeleteTest(int samplesize, int datasize) {
     Random rand = new Random();
 
-    int start = System.nanoTime();
-    Delete(rand.nextInt(datasize)); // by element, not index
+    long start = System.nanoTime();
+    Delete(rand.nextInt(datasize+1)); // by element, not index
     return System.nanoTime()-start;
   }
 }
