@@ -17,9 +17,9 @@ public class Run {
     for(int i = 1; i <= HIGH_RANGE_TESTED; i++) {
       for(int j = 1; j <= HIGH_SIZE_TESTED; j++) {
         // testing arraylist
-	/*
-        long ins_avg, search_avg, del_avg = ins_avg = search_avg = 0;
-        for(int k = 0; k < NUM_TRIALS_PER; k++) {
+	long ins_avg, search_avg, del_avg = ins_avg = search_avg = 0;
+        /*
+	for(int k = 0; k < NUM_TRIALS_PER; k++) {
           al = new ArrayListTest();
           ins_avg += al.InsertTest(i,j);
           search_avg += al.SearchTest(i,j);
@@ -29,7 +29,7 @@ public class Run {
 	search_avg /= NUM_TRIALS_PER;
 	del_avg /= NUM_TRIALS_PER;
         System.out.printf("ArrayList,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
-	*/
+	
 	
         // testing array
         ArrayTest a = new ArrayTest();
@@ -44,7 +44,7 @@ public class Run {
 	del_avg /= NUM_TRIALS_PER;
         System.out.printf("Array,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
 
-	/*
+	
         // testing treeset
         TreeSetTest ts = new TreeSetTest();
         ins_avg = search_avg = del_avg = 0;
@@ -58,7 +58,7 @@ public class Run {
 	del_avg /= NUM_TRIALS_PER;
         System.out.printf("TreeSet,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
 
-        
+        */
         // testing hashmap
         HashMapTest hm = new HashMapTest();
         ins_avg = search_avg = del_avg = 0;
@@ -70,8 +70,8 @@ public class Run {
 	ins_avg /= NUM_TRIALS_PER;
 	search_avg /= NUM_TRIALS_PER;
 	del_avg /= NUM_TRIALS_PER;
-        System.out.printf("HashMap,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
-	*/
+        System.out.printf("HashMap,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
+	
       }
     }
   }
