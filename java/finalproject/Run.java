@@ -16,6 +16,9 @@ public class Run {
     //runs all of the operations set out in other files
 
     ArrayListTest al;
+    ArrayTest a;
+    TreeSetTest ts;
+    HashMapTest hm;
 
     for(int i = 1; i <= HIGH_RANGE_TESTED; i++) {
       for(int j = 1; j <= HIGH_SIZE_TESTED; j++) {
@@ -46,7 +49,6 @@ public class Run {
 	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
 
 	  // testing array
-	  ArrayTest a = new ArrayTest();
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
 	    ins_avg += a.InsertTest(j,i);
@@ -65,7 +67,6 @@ public class Run {
 	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
 
 	  // testing treeset
-	  TreeSetTest ts = new TreeSetTest();
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
 	    ins_avg += ts.InsertTest(j,i);
@@ -84,7 +85,6 @@ public class Run {
 	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
 
 	  // testing hashmap
-	  HashMapTest hm = new HashMapTest();
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
 	    ins_avg += hm.InsertTest(i,j);
