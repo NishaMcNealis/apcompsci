@@ -20,16 +20,21 @@ public class Run {
     TreeSetTest ts;
     HashMapTest hm;
 
-    for(int i = 1; i <= HIGH_RANGE_TESTED; i++) {
-      for(int j = 1; j <= HIGH_SIZE_TESTED; j++) {
-        // testing arraylist
-	long ins_avg, search_avg, del_avg = ins_avg = search_avg = 0;
+    try {
+      PrintWriter ALOut = new PrintWriter(new BufferedWriter(new FileWriter("ArrayListTest.csv")), true);
+      PrintWriter AOut = new PrintWriter(new BufferedWriter(new FileWriter("ArrayTest.csv")), true);
+      PrintWriter TSOut = new PrintWriter(new BufferedWriter(new FileWriter("TreeSetTest.csv")), true);
+      PrintWriter HMOut = new PrintWriter(new BufferedWriter(new FileWriter("HashMapTest.csv")), true);
 
-	try {
-        
-	  PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ArrayListTest.csv")));
+      ALOut.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+      AOut.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+      TSOut.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+      HMOut.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
 
-	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+      for(int i = 1; i <= HIGH_RANGE_TESTED; i++) {
+	for(int j = 1; j <= HIGH_SIZE_TESTED; j++) {
+	  // testing arraylist
+	  long ins_avg, search_avg, del_avg = ins_avg = search_avg = 0;
 
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
 	    al = new ArrayListTest();
@@ -40,17 +45,12 @@ public class Run {
 	  ins_avg /= NUM_TRIALS_PER;
 	  search_avg /= NUM_TRIALS_PER;
 	  del_avg /= NUM_TRIALS_PER;
-	  out.printf("ArrayList,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
+	  ALOut.printf("ArrayList,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
 	
-	  out.close();
-
-	  out = new PrintWriter(new BufferedWriter(new FileWriter("ArrayTest.csv")));
-
-	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
-
 	  // testing array
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
+	    a = new ArrayTest();	    
 	    ins_avg += a.InsertTest(j,i);
 	    search_avg += a.SearchTest(j,i);
 	    del_avg += a.DeleteTest(j,i);
@@ -58,17 +58,12 @@ public class Run {
 	  ins_avg /= NUM_TRIALS_PER;
 	  search_avg /= NUM_TRIALS_PER;
 	  del_avg /= NUM_TRIALS_PER;
-	  out.printf("Array,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
-
-	  out.close();
-
-	  out = new PrintWriter(new BufferedWriter(new FileWriter("TreeSetTest.csv")));
-
-	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+	  AOut.printf("Array,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
 
 	  // testing treeset
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
+	    ts = new TreeSetTest();
 	    ins_avg += ts.InsertTest(j,i);
 	    search_avg += ts.SearchTest(j,i);
 	    del_avg += ts.DeleteTest(j,i);
@@ -76,17 +71,12 @@ public class Run {
 	  ins_avg /= NUM_TRIALS_PER;
 	  search_avg /= NUM_TRIALS_PER;
 	  del_avg /= NUM_TRIALS_PER;
-	  out.printf("TreeSet,%d,%d,%d,%d,%d",i,j,ins_avg,search_avg,del_avg);
-
-	  out.close();
-
-	  out = new PrintWriter(new BufferedWriter(new FileWriter("HashMapTest.csv")));
-
-	  out.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
+	  TSOut.printf("TreeSet,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
 
 	  // testing hashmap
 	  ins_avg = search_avg = del_avg = 0;
 	  for(int k = 0; k < NUM_TRIALS_PER; k++) {
+	    hm = new HashMapTest();
 	    ins_avg += hm.InsertTest(i,j);
 	    search_avg += hm.SearchTest(i,j);
 	    del_avg += hm.DeleteTest(i,j);
@@ -94,14 +84,16 @@ public class Run {
 	  ins_avg /= NUM_TRIALS_PER;
 	  search_avg /= NUM_TRIALS_PER;
 	  del_avg /= NUM_TRIALS_PER;
-	  out.printf("HashMap,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);
-	
-	  out.close();
-	} catch (IOException ie) {
-	  ie.printStackTrace();
-	  System.err.println("something odd happened");
+	  HMOut.printf("HashMap,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);	
 	}
       }
+
+      ALOut.close();
+      AOut.close();
+      TSOut.close();
+      HMOut.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
