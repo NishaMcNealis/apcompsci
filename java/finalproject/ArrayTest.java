@@ -56,9 +56,7 @@ public class ArrayTest implements DataStructure {
     Random rand = new Random();
 
     long start = System.nanoTime();
-    for(int i = 0; i < samplesize; i++) {
-      Delete(rand.nextInt(datasize));
-    }
+    Delete(rand.nextInt(samplesize));
     return System.nanoTime() - start;
   }
 }
