@@ -53,7 +53,10 @@ class Sudoku {
     return c;
   }
 
-  public static String[] squares_from_cols(String[] a) {
-    
+  public static String[] squares_from_cols(String[] c) {
+    String[] s = new String[9];
+    for (i = 0; i < c.length; i++) {
+      
+    }
   }
 }
