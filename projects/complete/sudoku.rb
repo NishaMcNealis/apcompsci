@@ -60,3 +60,5 @@ squares.each {|r|
 squares = a.flatten
 
 puts puzzle_valid?(horiz, vert, squares)
+puts vert
+
