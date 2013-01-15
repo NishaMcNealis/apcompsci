@@ -6,7 +6,6 @@ import java.io.IOException;
 public class Run {
   public static final int NUM_TRIALS_PER = 10;
   public static final int HIGH_RANGE_TESTED = 10; //10^x
-  public static final int HIGH_SIZE_TESTED = 10; //10^x
   public static void main(String[] args) {
     //main method
     runops();
@@ -19,6 +18,7 @@ public class Run {
     ArrayTest a;
     TreeSetTest ts;
     HashMapTest hm;
+    int j = 1000;
 
     try {
       PrintWriter ALOut = new PrintWriter(new BufferedWriter(new FileWriter("ArrayListTest.csv")), true);
@@ -32,7 +32,6 @@ public class Run {
       HMOut.println("StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage");
 
       for(int i = 1; i <= HIGH_RANGE_TESTED; i++) {
-	for(int j = 1; j <= HIGH_SIZE_TESTED; j++) {
 	  // testing arraylist
 	  long ins_avg, search_avg, del_avg = ins_avg = search_avg = 0;
 
@@ -85,7 +84,6 @@ public class Run {
 	  search_avg /= NUM_TRIALS_PER;
 	  del_avg /= NUM_TRIALS_PER;
 	  HMOut.printf("HashMap,%d,%d,%d,%d,%d\n",i,j,ins_avg,search_avg,del_avg);	
-	}
       }
 
       ALOut.close();

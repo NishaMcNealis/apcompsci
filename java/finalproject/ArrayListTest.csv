@@ -1,0 +1,11 @@
+StructureName,ElementRange,SizeRange,InsertAverage,SearchAverage,DeleteAverage
+ArrayList,1,1000,4142,5970,7278
+ArrayList,2,1000,2629,4665,3131
+ArrayList,3,1000,2550,6641,3240
+ArrayList,4,1000,2622,6193,3040
+ArrayList,5,1000,2505,6808,3007
+ArrayList,6,1000,2489,7674,3056
+ArrayList,7,1000,2598,8235,3072
+ArrayList,8,1000,2631,9153,3089
+ArrayList,9,1000,2590,9744,3064
+ArrayList,10,1000,5837,10830,3137
