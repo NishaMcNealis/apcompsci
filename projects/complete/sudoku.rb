@@ -59,6 +59,6 @@ squares.each {|r|
 }
 squares = a.flatten
 
-puts puzzle_valid?(horiz, vert, squares)
-puts vert
+#puts puzzle_valid?(horiz, vert, squares)
+puts squares
 
