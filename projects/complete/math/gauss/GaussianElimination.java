@@ -1,18 +1,14 @@
 import java.util.Scanner;
+import java.io.*;
+
 public class GaussianElimination {
-  public static final int SIZE = 4;
+  public static File output = new File("output.txt");
   public static void main (String[] args) {
-    double[][] orig = {
-      {3,1,4,1},
-      {5,9,2,6},
-      {5,3,5,8},
-      {9,7,9,3} };
-    double[][] augm = new double[SIZE][2*SIZE];
-    
+    output.delete();
     Scanner sc = new Scanner( System.in );
     String type;
     int sidelength;
-    
+    double[][] orig;
 
     System.out.print("Enter \"i\" to find inverse, enter \"s\" to solve a system of equations: ");
     type = sc.next();
@@ -39,9 +35,21 @@ public class GaussianElimination {
 	}
       }      
       f(orig);
+    } 
+  }
+ 
+  //wtf means write to file
+  public static void wtf(String s) {
+    try {
+      BufferedWriter out = new BufferedWriter(new FileWriter(output, true));
+      out.write(s);
+      out.close();
+    }
+    catch(Exception e) {
+      System.out.println("IO error: " + e.getMessage());
     }
   }
-    
+
   public static void print(double[][] a) {
     a = posZero(a);
     for (int i = 0; i < a.length; i++) {
@@ -55,7 +63,20 @@ public class GaussianElimination {
       System.out.print(" |\n");
     }
   }
-
+  public static void write(double[][] a) {
+    a = posZero(a);
+    for (int i = 0; i < a.length; i++) {
+      wtf("|");
+      for (int j = 0; j < a[0].length; j++) {
+	wtf(String.format("%6.2f ", a[i][j]));
+	if (j == a.length-1) { 
+	  wtf("    ");
+	}
+      }
+      wtf(" |\n");
+    }
+  }
+  
   public static double[][] prepInverse(double[][] orig) {
     double[][] augm = new double[orig.length][2*orig.length];
     for (int i = 0; i < augm.length; i++) {
@@ -86,24 +107,30 @@ public class GaussianElimination {
   }
 
   public static void f(double[][] a) {
-    System.out.println("Original augmented matrix:");
+    wtf("Original matrix:\n");
+    write(a);
+    System.out.println("Original matrix:");
     print(a);
     for (int i = 0; i < a.length; i++) {
       if (a[i][i] != 1 && a[i][i] != 0) {
 	double n = 1/a[i][i];
+	wtf(String.format("R%d * 1/%.2f --> R%d\n", i+1, a[i][i], i+1));
 	System.out.printf("R%d * 1/%.2f --> R%d\n", i+1, a[i][i], i+1);
 	for (int j = 0; j < a[0].length; j++) {
 	  a[i][j] *= n;
 	}
+	write(a);
 	print(a);
       }
       
       for (int k = 1; i + k < a.length; k++) {
 	double n = a[i+k][i] * -1;
+	wtf(String.format("R%d * %.2f + R%d --> R%d\n", i+1, n, i+k+1, i+k+1));
 	System.out.printf("R%d * %.2f + R%d --> R%d\n", i+1, n, i+k+1, i+k+1);
 	for (int j = 0; j < a[0].length; j++) {
 	  a[i+k][j] += n*a[i][j];
 	}
+	write(a);
 	print(a);
       }
     }
@@ -111,10 +138,12 @@ public class GaussianElimination {
     for (int i = a.length-1; i >= 0; i--) {
       for (int k = 1; i-k >= 0; k++) {
 	double n = a[i-k][i] * -1;
+	wtf(String.format("R%d * %.2f + R%d --> R%d\n", i+1, n, i-k+1, i-k+1));	
 	System.out.printf("R%d * %.2f + R%d --> R%d\n", i+1, n, i-k+1, i-k+1);
 	for (int j = 0; j < a[0].length; j++) {
 	  a[i-k][j] += n*a[i][j];
 	}
+	write(a);
 	print(a);
       }
     }
