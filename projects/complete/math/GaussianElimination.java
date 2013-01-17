@@ -8,10 +8,12 @@ public class GaussianElimination {
       {5,3,5,8},
       {9,7,9,3} };
     double[][] augm = new double[SIZE][2*SIZE];
-    /*
+    
     Scanner sc = new Scanner( System.in );
     String type;
     int sidelength;
+    
+
     System.out.print("Enter \"i\" to find inverse, enter \"s\" to solve a system of equations: ");
     type = sc.next();
     if (type.charAt(0) == 'i' || type.charAt(0) == 'I') {
@@ -24,14 +26,22 @@ public class GaussianElimination {
 	  orig[i][j] = Double.parseDouble(sc.next());
 	}
       }
-      }*/
-    
-
-    findInverse(prepInverse(orig));
-
-   
+      f(prepInverse(orig));
+    }
+    else if (type.charAt(0) == 's' || type.charAt(0) == 'S') {
+      System.out.printf("Enter the number of rows in your matrix: ");
+      sidelength = Integer.parseInt(sc.next());
+      orig = new double[sidelength][sidelength+1];
+      for (int i = 0; i < orig.length; i++) {
+	for (int j = 0; j < orig[0].length; j++) {
+	  System.out.printf("Enter the value of the element at a(%d,%d): ", i+1, j+1);
+	  orig[i][j] = Double.parseDouble(sc.next());
+	}
+      }      
+      f(orig);
+    }
   }
-  
+    
   public static void print(double[][] a) {
     a = posZero(a);
     for (int i = 0; i < a.length; i++) {
@@ -64,28 +74,6 @@ public class GaussianElimination {
     return augm;
   }
   
-  public static double[][] prepRref(double[][] orig) {
-    double[][] augm = new double[orig.length][orig[0].length];
-    for (int i = 0; i < augm.length; i++) {
-      for (int j = 0; j < augm[0].length; j++) {
-	if (i == j-augm.length) {
-	  augm[i][j] = 1;
-	}
-	else if (j < augm.length) {
-	  augm[i][j] = orig[i][j];
-	}
-	else {
-	  augm[i][j] = 0;
-	}
-      }
-    }
-    return augm;
-  }
-  
-  public static boolean hasInverse(int[][] a) {
-    return true;
-  }
-  
   public static double[][] posZero(double[][] a) {
     for (int i = 0; i < a.length; i++) {
       for (int j = 0; j < a[0].length; j++) {
@@ -97,7 +85,7 @@ public class GaussianElimination {
     return a;
   }
 
-  public static void findInverse(double[][] a) {
+  public static void f(double[][] a) {
     System.out.println("Original augmented matrix:");
     print(a);
     for (int i = 0; i < a.length; i++) {
