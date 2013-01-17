@@ -5,8 +5,8 @@ class Sudoku {
     String exp = args[0];
     String[] rows = rows_from_string(exp);
     String[] cols = cols_from_rows(rows);
-    String[] squares = squares_from_cols(cols);
-    System.out.println(cols[0]);
+    String[] squares = squares_from_rows(rows);
+    System.out.println(puzzle_valid(rows, cols, squares));
   }
   
   public static boolean string_include(String s, char c) {
@@ -25,11 +25,15 @@ class Sudoku {
     return true;
   }
 
-  public static boolean segment_valid(String[] segs) {
+  public static boolean section_valid(String[] segs) {
     for (int i = 0; i < segs.length; i++) {
       if (!segment_valid(segs[i])) return false;
     }
     return true;
+  }
+
+  public static boolean puzzle_valid(String[] rows, String[] cols, String[] squares) {
+    return section_valid(rows) && section_valid(cols) && section_valid(squares);
   }
 
   public static String[] rows_from_string(String s) {
@@ -53,10 +57,20 @@ class Sudoku {
     return c;
   }
 
-  public static String[] squares_from_cols(String[] c) {
+  public static String section_from_string(String s, int which) {
+    return s.substring(which*3,which*3+3);
+  }
+
+  public static String[] squares_from_rows(String[] r) {
     String[] s = new String[9];
-    for (i = 0; i < c.length; i++) {
-      
+    for (int i = 0; i < s.length; i++) {
+      s[i] = "";
     }
+    for (int i = 0; i < r.length; i++) {
+      for (int j = 0; j < 3; j++) {
+        s[i] += section_from_string(r[i], j);
+      }
+    }
+    return s;
   }
 }
