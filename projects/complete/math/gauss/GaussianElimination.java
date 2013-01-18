@@ -93,7 +93,7 @@ public class GaussianElimination {
     for (int i = 0; i < a.length; i++) {
       System.out.print("|");
       for (int j = 0; j < a[0].length; j++) {
-	System.out.printf("%6.2f ", a[i][j]);
+	System.out.printf("%6.3f ", a[i][j]);
 	if (j == a.length-1) { 
 	  System.out.print("    ");
 	}
@@ -106,7 +106,7 @@ public class GaussianElimination {
     for (int i = 0; i < a.length; i++) {
       wtf("|");
       for (int j = 0; j < a[0].length; j++) {
-	wtf(String.format("%6.2f ", a[i][j]));
+	wtf(String.format("%6.3f ", a[i][j]));
 	if (j == a.length-1) { 
 	  wtf("    ");
 	}
