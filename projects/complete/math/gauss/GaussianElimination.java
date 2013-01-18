@@ -9,9 +9,23 @@ public class GaussianElimination {
     String type;
     int sidelength;
     double[][] orig;
-
-    System.out.print("Enter \"i\" to find inverse, enter \"s\" to solve a system of equations: ");
+   
+    System.out.print("Enter \"i\" to find inverse, enter \"s\" to solve a system of equations, enter \"d\" to find the determinant: ");
     type = sc.next();
+    if (type.charAt(0) == 'd' || type.charAt(0) == 'D') {
+      System.out.println("Sorry, determinant is still in development, please try again later");
+      System.exit(0);
+      System.out.print("Enter the side length of your square matrix: ");
+      sidelength = Integer.parseInt(sc.next());
+      orig = new double[sidelength][sidelength];
+      for (int i = 0; i < orig.length; i++) {
+	for (int j = 0; j < orig[0].length; j++) {
+	  System.out.printf("Enter the value of the element at a(%d,%d): ", i+1, j+1);
+	  orig[i][j] = Double.parseDouble(sc.next());
+	}
+      }
+      System.out.println(determinant(orig));
+    }
     if (type.charAt(0) == 'i' || type.charAt(0) == 'I') {
       System.out.print("Enter the side length of your square matrix: ");
       sidelength = Integer.parseInt(sc.next());
@@ -37,7 +51,31 @@ public class GaussianElimination {
       f(orig);
     } 
   }
- 
+
+  public static double determinant(double[][] det) { 
+    if (det.length != det[0].length) {
+      return -314.15;
+    }
+    else if (det.length <= 0) {
+      return -314.15;
+    }
+    else if (det.length == 1) {
+      return det[0][0];
+    }
+    else {
+      return detCalc(det)[0][0];
+    }
+  }
+  
+  public static double[][] detCalc(double[][] det) {
+    if (det.length == 2) {
+      double[][] ret = new double[1][1];
+      ret[0][0] = det[0][0] * det[1][1] - det[1][0] * det[0][1];
+      return ret;
+    }
+    return det;
+  }
+  
   //wtf means write to file
   public static void wtf(String s) {
     try {
