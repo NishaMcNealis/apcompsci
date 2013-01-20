@@ -12,11 +12,16 @@ class String
   end
 end
 
-g = Gruff::Line.new(false)
+g = Gruff::Line.new false
 g.title = "Times for Operations on #{ARGV[0]}"
 g.x_axis_label = "Number of elements"
 g.y_axis_label = "Nanosec time"
-g.labels = {}
+to_hash = []
+(0..10).each do |el|
+  to_hash.push el
+  to_hash.push el*100
+end
+g.labels = Hash[to_hash]
 
 insert = []
 search = []
@@ -25,16 +30,16 @@ delete = []
 count = 0
 CSV.foreach("#{ARGV[0]}Test.csv") do |row|
   begin
-    insert.push(row[3].to_i) if row[3].to_i < 110000
-    search.push(row[4].to_i) if row[4].to_i < 110000
-    delete.push(row[5].to_i) if row[5].to_i < 110000
+    insert.push row[3].to_i
+    search.push row[4].to_i
+    delete.push row[5].to_i
     g.labels[count] = row[2]
   rescue
   end
 end
 
-g.data('Insert', insert)
-g.data('Search', search)
-g.data('Delete', delete)
+g.data 'Insert', insert
+g.data 'Search', search
+g.data 'Delete', delete
 
-g.write("#{ARGV[0].underscore}_insert.png")
+g.write "#{ARGV[0].underscore}_test.png"
