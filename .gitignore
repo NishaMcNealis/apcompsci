@@ -7,4 +7,5 @@
 *.yml
 .settings*
 .settings/*
-output.txt
+*output.txt
+*.csv
