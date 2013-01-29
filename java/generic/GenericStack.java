@@ -27,14 +27,25 @@ class GenericStack<T> extends GenericMax {
 
   public T pop() {
     T last = (T) c.toArray()[c.size()-1];
-    Collection temp = new Collection();
-    T[] temp = new T[c.size()-1];
-    c = new T[].addAll(ArrayUtils.removeElement(c.toArray(),c.size()-1));
- 
-    return last;
+    Collection temp;
+    Object[] arr = deleteFromArray(c.toArray(),size()-1));
+  for(int i = 0; i < arr.length; i++) {
+    temp.add(arr[i]);
+  }
+  c = temp;
+  return last;
   }
 
   public T peek() {
     return (T) c.toArray()[size()-1];
+  }
+
+  public Object[] deleteFromArray(Object[] a,int index) {
+    Object[] b = new Object[a.length - 1];
+
+    for(int i = 0; i < a.length; i++) {
+      if(i < index) b[i] = a[i];
+      else if(i > index) b[i-1] = a[i];
+    }
   }
 }
