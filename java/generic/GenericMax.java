@@ -9,7 +9,6 @@ class GenericMax<T> {
     c.add("world");
     c.add("zzzzzzzzz");
     c.add("i hate java");
-
     System.out.println(max(c));
   }
 
