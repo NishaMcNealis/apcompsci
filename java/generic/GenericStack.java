@@ -2,13 +2,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/*
-
-needs:
--isEmpty
-
-*/
-
 class GenericStack<T> extends GenericMax {
   private Collection c;
 
@@ -33,19 +26,26 @@ class GenericStack<T> extends GenericMax {
   }
 
   public T pop() {
-    T last = (T) c.toArray()[size()-1];
-    
+    T last = (T) c.toArray()[c.size()-1];
+    Collection temp;
+    Object[] arr = deleteFromArray(c.toArray(),size()-1));
+  for(int i = 0; i < arr.length; i++) {
+    temp.add(arr[i]);
   }
-
-  public T pop(int index) {
-
+  c = temp;
+  return last;
   }
 
   public T peek() {
-
+    return (T) c.toArray()[size()-1];
   }
 
-  public T peek(int index) {
+  public Object[] deleteFromArray(Object[] a,int index) {
+    Object[] b = new Object[a.length - 1];
 
+    for(int i = 0; i < a.length; i++) {
+      if(i < index) b[i] = a[i];
+      else if(i > index) b[i-1] = a[i];
+    }
   }
 }
