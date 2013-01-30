@@ -6,7 +6,7 @@ class GenericStack<T> extends GenericMax {
   private Collection c;
 
   public static void main(String[] args) {
-    
+    // do something, i guess...?
   }
 
   public boolean isEmpty() {
@@ -18,7 +18,16 @@ class GenericStack<T> extends GenericMax {
   }
 
   public int copy(int morespace) {
-    // provide your own code here for copying the Collection into a Collection of greater size
+    Collection temp;
+    Object[] arr = c.toArray();
+    for (int i = 0; i < size(); i++) {
+      temp.add(arr[i]);
+    }
+    for (int i = 0; i < morespace; i++) {
+      temp.add(null);
+    }
+    c = temp;
+    return size();
   }
 
   public int push(T e) {
@@ -26,14 +35,16 @@ class GenericStack<T> extends GenericMax {
   }
 
   public T pop() {
-    T last = (T) c.toArray()[c.size()-1];
     Collection temp;
-    Object[] arr = deleteFromArray(c.toArray(),size()-1));
-  for(int i = 0; i < arr.length; i++) {
-    temp.add(arr[i]);
-  }
-  c = temp;
-  return last;
+    Object[] arr = deleteFromArray(c.toArray(),size()-1);
+
+    for(int i = 0; i < arr.length; i++) {
+      temp.add(arr[i]);
+    }
+
+    T last = peek();
+    c = temp;
+    return last;
   }
 
   public T peek() {
