@@ -1,14 +1,13 @@
 class Graph {
-  private ArrayList<Node> graph;
-  private int index;
-  public Node source;
+  private ArrayList<Node> nodes;
+  private ArrayList<Edge> edges;
+  private int index = 0;
 
   public boolean remove(Node toRemove) {
-    int id = toRemove.id;
     int i = 0;
-    for (Node n : graph) {
-      if (n.id == id) {
-        graph.remove(i);
+    for (Node n : nodes) {
+      if (n.id == toRemove.id) {
+        nodes.remove(i);
         return true;
       }
       i++;
@@ -16,39 +15,25 @@ class Graph {
     return false;
   }
 
-  public boolean add(Node n, int dist) {
-    n.id = indx;
-    n.dist = dist;
-    index++;
-    graph.add(n);
-    return true;
+  public ArrayList<Node> nodes() {
+    return nodes;
+  }
+
+  public ArrayList<Edge> edges() {
+    return edges;
   }
 
   public boolean add(Node n) {
-    return add(n, n.dist);
-  }
-
-  public Node closest() {
-    Node closest = new Node();
-    for (Node n : graph) {
-      if (n.dist < closest.dist) closest = n;
-    }
-    return closest;
-  }
-
-  public Graph() {
-    graph = new ArrayList<Node>();
-    index = 0;
-    source = new Node();
-    source.dist = 0;
-  }
-
-  public Graph(ArrayList<Node> c) {
-    Graph();
-    for (Node n : c) add(n);
+    nodes.add(n);
+    return true;
   }
 
   public boolean empty() {
-    return graph.isEmpty();
+    return nodes.isEmpty();
+  }
+
+  public Graph(ArrayList<Node> nodes, ArrayList<Edge> edges) {
+    this.nodes = nodes;
+    this.edges = edges;
   }
 }
