@@ -1,8 +1,12 @@
 public class Velocity {
-  private double x;
-  private double y;
-  private double m;
-  private double t;
+  private double x, y;
+  private double m, t;
+
+  /*
+    Velocity is in px/s, meaning that mostly we'll be setting velocities in linear.
+
+    We'll calculate locations every specified frame interval.
+   */
 
   public Velocity() {
     x = y = 0;

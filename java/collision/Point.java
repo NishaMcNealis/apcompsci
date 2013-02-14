@@ -11,12 +11,6 @@ public class Point {
     setY(0);
   }
 
-  public Point(int id, double x, double y) {
-    setX(x);
-    setY(y);
-    this.id = id;
-  }
-
   public int getID() {
     return id;
   }
@@ -49,8 +43,8 @@ public class Point {
     this.v = v;
   }
   
-  public double distanceTo(Point a) {
-    return Math.sqrt(Math.pow(a.getX()-x,2) + Math.pow(a.getY()-y,2));
+  public double distanceTo(Point p) {
+    return Math.sqrt(Math.pow(p.getX()-x,2) + Math.pow(p.getY()-y,2));
   }
 
   public void draw(Graphics g) {
