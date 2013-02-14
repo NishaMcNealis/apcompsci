@@ -3,19 +3,19 @@ import java.util.Random;
 import javax.swing.*;
 import java.awt.Graphics;
 
-public class CollisionFrame {
+public class CollisionFrame extends JFrame {
   private CollisionPanel panel;
   Random rand = new Random();
   
   public CollisionFrame() {
     this.setTitle("'round and 'round the points will go; where they stop, nobody knows");
-    this.setSize(600,400);
+    this.setSize(Constants.FRAME_WIDTH,Constants.FRAME_HEIGHT);
   }
 }
 
 class CollisionPanel extends JPanel {
   private CollisionPanel() {
-    setBackground(Color.WHITE);
+    setBackground(Constants.FRAME_BACKGROUND);
   }
   
   private CollisionPanel(Color c) {
