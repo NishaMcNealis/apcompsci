@@ -6,7 +6,12 @@ public class Constants {
     FRAME_BACKGROUND = Color.WHITE;
 
   public static final int
+    POINT_NUMBER = 28,
     POINT_RADIUS = 5,
     FRAME_HEIGHT = 400,
-    FRAME_WIDTH  = 600;
+    FRAME_WIDTH  = 600,
+    FRAME_OFFSET = 28,
+    
+    MAX_M = 5,
+    MAX_T = 360;
 }

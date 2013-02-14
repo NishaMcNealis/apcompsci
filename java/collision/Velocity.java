@@ -4,6 +4,24 @@ public class Velocity {
   private double m;
   private double t;
 
+  public Velocity() {
+    x = y = 0;
+    recalcLinear();
+  }
+
+  public Velocity(double a, double b, boolean isLin) {
+    if (isLin) {
+      x = a;
+      y = b;
+      recalcLinear();
+    }
+    else {
+      m = a;
+      t = b;
+      recalcTrig();
+    }
+  }
+
   public double getX() {
     return x;
   }

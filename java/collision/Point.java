@@ -2,25 +2,23 @@ import java.awt.Graphics;
 
 public class Point {
   private double x, y;
+  private Velocity v;
+
   private int id;
 
-  public Point(int id) {
+  public Point() {
     setX(0);
     setY(0);
+  }
+
+  public Point(int id, double x, double y) {
+    setX(x);
+    setY(y);
     this.id = id;
   }
 
-  public Point(double x, double y) {
-    setX(x);
-    setY(y);
-  }
-
-  public void setID(int a) {
-    this.id = a;
-  }
-
   public int getID() {
-    return this.id;
+    return id;
   }
 
   public double getX() {
@@ -31,6 +29,14 @@ public class Point {
     return y;
   }
 
+  public Velocity getV() {
+    return v;
+  }
+
+  public void setID(int id) {
+    this.id = id;
+  }
+
   public void setX(double x) {
     this.x = x;
   }
@@ -39,6 +45,10 @@ public class Point {
     this.y = y;
   }
 
+  public void setV(Velocity v) {
+    this.v = v;
+  }
+  
   public double distanceTo(Point a) {
     return Math.sqrt(Math.pow(a.getX()-x,2) + Math.pow(a.getY()-y,2));
   }

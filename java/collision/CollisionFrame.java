@@ -1,28 +1,21 @@
 import java.awt.*;
-import java.util.Random;
 import javax.swing.*;
-import java.awt.Graphics;
 
 public class CollisionFrame extends JFrame {
-  private CollisionPanel panel;
-  Random rand = new Random();
-  
+  private ParticleSystem system;
+
   public CollisionFrame() {
-    this.setTitle("'round and 'round the points will go; where they stop, nobody knows");
-    this.setSize(Constants.FRAME_WIDTH,Constants.FRAME_HEIGHT);
+    init();
   }
-}
 
-class CollisionPanel extends JPanel {
-  private CollisionPanel() {
-    setBackground(Constants.FRAME_BACKGROUND);
+  public void init() {
+    setTitle("'round and 'round the points will go; where they stop, nobody knows");
+    setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT+Constants.FRAME_OFFSET);
+    
+    system = new ParticleSystem(Constants.POINT_NUMBER);
   }
   
-  private CollisionPanel(Color c) {
-    setBackground(c);
-  }
-
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  public void paint(Graphics g) {
+    system.render(g);
   }
 }
