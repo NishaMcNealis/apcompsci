@@ -30,6 +30,17 @@ class ParticleSystem {
     assignIDs();
   }
 
+  public void computeFrame() {
+    for (Point p : points) {
+      for (Point k : points) {
+        if (p.sameAs(k)) continue;
+        else if (p.closeTo(k)) {
+          // oooooooooomg render
+        }
+      }
+    }
+  }
+
   public void assignID(Point p) {
     p.setID(this.index);
     this.index++;
@@ -41,5 +52,9 @@ class ParticleSystem {
 
   public void render(Graphics g) {
     for (Point p : points) p.draw(g);
+  }
+
+  public boolean haveFrame() {
+    return true;
   }
 }

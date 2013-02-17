@@ -47,6 +47,18 @@ public class Point {
     return Math.sqrt(Math.pow(p.getX()-x,2) + Math.pow(p.getY()-y,2));
   }
 
+  public boolean closeTo(Point p) {
+    return distanceTo(p) <= Constants.POINT_RADIUS*2;
+  }
+
+  public boolean sameAs(Point p) {
+    return getID() == p.getID();
+  }
+
+  public void interact(Point k) {
+    
+  }
+
   public void draw(Graphics g) {
     int d = 2*Constants.POINT_RADIUS;
     g.setColor(Constants.POINT_COLOR);

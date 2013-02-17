@@ -16,6 +16,10 @@ public class CollisionFrame extends JFrame {
   }
   
   public void paint(Graphics g) {
-    system.render(g);
+    while (system.haveFrame()) {
+      system.computeFrame();
+      system.render(g);
+      // SYSTEM WAIT 1 SEC
+    }
   }
 }
