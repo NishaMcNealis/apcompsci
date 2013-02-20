@@ -1,36 +1,37 @@
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 class OurStack {
-  private ArrayList<Integer> stack;
+  private ArrayList<BigDecimal> stack;
 
   public OurStack() {
-    stack = new ArrayList<Integer>();
+    stack = new ArrayList<BigDecimal>();
   }
 
-  public OurStack(ArrayList<Integer> stack) {
+  public OurStack(ArrayList<BigDecimal> stack) {
     this.stack = stack;
   }
 
-  public void push(int a) {
+  public void push(BigDecimal a) {
     stack.add(a);
   }
 
-  public int peek() {
+  public BigDecimal peek() {
     return stack.get(stack.size()-1);
   }
 
-  public int peek(int i) {
+  public BigDecimal peek(int i) {
     return stack.get(i);
   }
 
-  public int pop() {
-    int a = peek();
+  public BigDecimal pop() {
+    BigDecimal a = peek();
     stack.remove(stack.size()-1);
     return a;
   }
 
-  public int pop(int i) {
-    int a = peek(i);
+  public BigDecimal pop(int i) {
+    BigDecimal a = peek(i);
     stack.remove(i);
     return a;
   }

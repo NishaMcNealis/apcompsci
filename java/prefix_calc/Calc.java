@@ -1,89 +1,74 @@
-import java.lang.Math;
 import java.util.ArrayList;
 import java.lang.Character;
+import java.util.Collections;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 class Calc {
-  public static String prefix_string = "+ 1 * 3 4";
+  public static String prefix_string = "/ 2 + 4 3";
   public static String postfix_string;
 
-  public static ArrayList<Character> ops;
-
-  public static OurStack postfix;
-  public static OurStack res;
+  public static ArrayList<String> postfix;
+  public static OurStack res = new OurStack();
 
   public static void main(String[] args) {
-    res = new OurStack();
-
-    ops = new ArrayList<String>();
-    ops.add('+');
-    ops.add('-');
-    ops.add('*');
-    ops.add('/');
-    ops.add('^');
-    
     postfix_string = reverse(prefix_string);
-    postfix = new OurStack(new ArrayList<String>(postfix_string.split(" ")));
-
-    pretty_print(postfix);
+    postfix = new ArrayList<String>();
+    Collections.addAll(postfix, postfix_string.split(" "));
+    System.out.println(process(postfix));
   }
 
-  public static int process(ArrayList<String> post) {
-    String x;
-    int a, b, res = 0;
-
-    for (String s : postfix_string) {
-      if (is_dig(s)) {
-        res.push(Integer.parseInt(s));
+  public static BigDecimal process(ArrayList<String> post) {
+    for (String s : post) {
+      if (isDouble(s)) {
+        res.push(BigDecimal.valueOf(Double.parseDouble(s)));
       }
       else {
-        b = res.pop();
-        a = res.pop();
-        
+        BigDecimal a = res.pop();
+        BigDecimal b = res.pop();
+        res.push(do_op(s.charAt(0), a, b));
       }
     }
-  }
-
-  public static void pretty_print(String[] arr) {
-    for (String s : arr) {
-      System.out.print(s+",");
-    }
-    System.out.println("");
+    return res.peek();
   }
 
   public static String reverse(String s) {
     return new StringBuffer(s).reverse().toString();
   }
 
-  public boolean is_op(String s) {
-    return ops.contains(s);
-  }
-
-  public boolean is_dig(Character c) {
-    return Character.isDigit(c);
-  }
-
-  public int do_op(char op, int a, int b) {
-    int res;
+  public static BigDecimal do_op(char op, BigDecimal a, BigDecimal b) {
+    BigDecimal res;
     switch (op) {
     case '+':
-      res = a+b;
+      res = a.add(b);
       break;
     case '-':
-      res = a-b;
+      res = a.subtract(b);
       break;
     case '*':
-      res = a*b;
+      res = a.multiply(b);
       break;
     case '/':
-      res = a/b;
+      res = a.divide(b, new MathContext(12, RoundingMode.HALF_UP));
       break;
     case '^':
-      res = (int) Math.pow(a, b);
+      res = a.pow(b.toBigInteger().intValue());
       break;
     default:
-      res = 0;
+      res = BigDecimal.valueOf(0);
       break;
     }
     return res;
+  }
+
+  public static boolean isDouble (String s) {
+   try {
+     Double.parseDouble(s);
+     return true;
+   }
+   catch (Exception e) {
+     return false;
+   }
   }
 }
