@@ -6,13 +6,14 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 class Calc {
-  public static String prefix_string = "/ 2 + 4 3";
+  public static String prefix_string;
   public static String postfix_string;
 
   public static ArrayList<String> postfix;
   public static OurStack res = new OurStack();
 
   public static void main(String[] args) {
+    prefix_string = args[0];
     postfix_string = reverse(prefix_string);
     postfix = new ArrayList<String>();
     Collections.addAll(postfix, postfix_string.split(" "));
