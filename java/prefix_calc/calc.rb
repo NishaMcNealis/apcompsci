@@ -1,4 +1,4 @@
-def is_num?(s)
+def is_num? s
   s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true 
 end
 
@@ -15,7 +15,7 @@ def process post, res, ops
   res.pop
 end
 
-post_s = ARGV[0].reverse.split " "
+post = ARGV[0].reverse.split " "
 res = []
 ops = {
   :+ => ->(a, b) { a+b },
@@ -23,4 +23,4 @@ ops = {
   :* => ->(a, b) { a*b },
   :/ => ->(a, b) { a/b }
 }
-p process(post_s, res, ops)
+p process(post, res, ops)
