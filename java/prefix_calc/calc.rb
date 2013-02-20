@@ -22,6 +22,7 @@ ops = {
   :+ => ->(a, b) { a+b },
   :- => ->(a, b) { a-b },
   :* => ->(a, b) { a*b },
-  :/ => ->(a, b) { a/b }
+  :/ => ->(a, b) { a/b },
+  :^ => ->(a, b) { a**b }
 }
 p process(post_s, res, ops)
