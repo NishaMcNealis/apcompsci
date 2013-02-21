@@ -1,3 +1,5 @@
+// convert to BigDecimal instead
+
 public class Velocity {
   private double x, y;
   private double m, t;
