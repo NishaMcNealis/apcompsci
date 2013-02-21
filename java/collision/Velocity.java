@@ -1,8 +1,10 @@
 // convert to BigDecimal instead
+import java.util.Random;
 
 public class Velocity {
   private double x, y;
   private double m, t;
+  private Random rand;
 
   /*
     Velocity is in px/s, meaning that mostly we'll be setting velocities in linear.
@@ -11,8 +13,10 @@ public class Velocity {
    */
 
   public Velocity() {
-    x = y = 0;
-    recalcLinear();
+    rand = new Random();
+    m = rand.nextDouble() * Constants.POINT_MAX_M;
+    t = rand.nextInt(Constants.POINT_MAX_T);
+    recalcTrig();
   }
 
   public Velocity(double a, double b, boolean isLin) {

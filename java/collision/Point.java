@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Point {
   private double x, y;
@@ -57,6 +58,12 @@ public class Point {
 
   public void interact(Point k) {
     
+  }
+  
+  // t == milliseconds since last refresh
+  public void move(int t) {
+    setX(v.getX() * t / 1000d);
+    setY(v.getY() * t / 1000d);
   }
 
   public void draw(Graphics g) {

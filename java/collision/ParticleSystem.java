@@ -37,6 +37,9 @@ class ParticleSystem {
         else if (p.closeTo(k)) {
           // oooooooooomg render
         }
+	else {
+	  k.move(Constants.FRAME_REFRESH_RATE);
+	}
       }
     }
   }
@@ -56,5 +59,11 @@ class ParticleSystem {
 
   public boolean haveFrame() {
     return true;
+  }
+
+  public void print() {
+    for (Point p : points) {
+      System.out.println(p.toString());
+    }
   }
 }

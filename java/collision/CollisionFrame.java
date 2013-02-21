@@ -16,10 +16,17 @@ public class CollisionFrame extends JFrame {
   }
   
   public void paint(Graphics g) {
-    while (system.haveFrame()) {
-      system.computeFrame();
-      system.render(g);
-      // SYSTEM WAIT 1 SEC
+    system.computeFrame();
+    system.render(g);
+    system.print();
+    try {
+      Thread.currentThread().sleep(300);
+    }
+    catch (InterruptedException ie) {
+      System.err.println("Haha, your threading sucks");
+    }
+    if (system.haveFrame()) {
+      repaint();
     }
   }
 }
