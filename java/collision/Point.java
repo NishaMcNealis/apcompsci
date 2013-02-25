@@ -62,14 +62,18 @@ public class Point {
   
   // t == milliseconds since last refresh
   public void move(int t) {
-    setX(v.getX() * t / 1000d);
-    setY(v.getY() * t / 1000d);
+    x += v.getX() * t / 1000d;
+    y += v.getY() * t / 1000d;
   }
 
   public void draw(Graphics g) {
     int d = 2*Constants.POINT_RADIUS;
-    g.setColor(Constants.POINT_COLOR);
-    g.drawOval((int) x, (int) y, d, d);
+    g.fillOval((int) x, (int) y, d, d);
+  }
+
+  public void erase(Graphics g) {
+    int d = 2*Constants.POINT_RADIUS;
+    g.fillOval((int) x, (int) y, d, d);
   }
 
   public String toString() {

@@ -18,7 +18,7 @@ class ParticleSystem {
 
     for(int i = 0; i < n; i++) {
       Velocity v = new Velocity();
-      v.setM(rand.nextInt(Constants.POINT_MAX_M));
+      v.setM(rand.nextInt(Constants.POINT_MAX_M) + Constants.POINT_MIN_M);
       v.setT(rand.nextInt(Constants.POINT_MAX_T));
 
       Point p = new Point();
@@ -53,7 +53,13 @@ class ParticleSystem {
     for (Point p : points) assignID(p);
   }
 
+  public void prerender(Graphics g) {
+    g.setColor(Constants.FRAME_BACKGROUND);
+    for (Point p : points) p.erase(g);
+  }
+
   public void render(Graphics g) {
+    g.setColor(Constants.POINT_COLOR);
     for (Point p : points) p.draw(g);
   }
 
