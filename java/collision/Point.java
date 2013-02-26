@@ -60,16 +60,17 @@ public class Point {
     this.m = m;
   }
   
-  public double distanceTo(Point p) {
-    return Math.sqrt(Math.pow(p.getX()-x,2) + Math.pow(p.getY()-y,2));
+  public double distanceTo(Point k) {
+    return Math.sqrt(Math.pow(k.getX()-x,2) + Math.pow(k.getY()-y,2));
   }
 
-  public boolean closeTo(Point p) {
-    return distanceTo(p) <= Constants.POINT_RADIUS*2;
+  public boolean closeTo(Point k) {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    return distanceTo(k) <= r*2;
   }
 
-  public boolean sameAs(Point p) {
-    return getID() == p.getID();
+  public boolean sameAs(Point k) {
+    return getID() == k.getID();
   }
 
   public Point[] interact(Point k) {
@@ -93,13 +94,13 @@ public class Point {
   }
 
   public void draw(Graphics g) {
-    int d = 2*Constants.POINT_RADIUS;
-    g.fillOval((int) x, (int) y, d, d);
+    double d = Constants.POINT_MASS_RADIUS_RATIO*m;
+    g.fillOval((int) x, (int) y, (int) d, (int) d);
   }
 
   public void erase(Graphics g) {
-    int d = 2*Constants.POINT_RADIUS;
-    g.fillOval((int) x, (int) y, d, d);
+    double d = Constants.POINT_MASS_RADIUS_RATIO*m;
+    g.fillOval((int) x, (int) y, (int) d, (int) d);
   }
 
   public String toString() {

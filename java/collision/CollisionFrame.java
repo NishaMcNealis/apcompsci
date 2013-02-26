@@ -27,6 +27,7 @@ public class CollisionFrame extends JFrame {
     catch (InterruptedException ie) {
       System.err.println("Haha, your threading sucks");
     }
+
     if (system.haveFrame()) {
       repaint();
     }
