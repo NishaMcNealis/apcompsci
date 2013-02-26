@@ -16,7 +16,7 @@ class ParticleSystem {
     Random rand = new Random();
     points = new ArrayList<Point>();
 
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       Velocity v = new Velocity();
       v.setM(rand.nextInt(Constants.POINT_MAX_M));
       v.setT(rand.nextInt(Constants.POINT_MAX_T));
@@ -35,6 +35,7 @@ class ParticleSystem {
       for (Point k : points) {
         if (p.sameAs(k)) continue;
         else if (p.closeTo(k)) {
+          
           // oooooooooomg render
         }
 	else {
