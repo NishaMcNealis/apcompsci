@@ -32,6 +32,12 @@ public class Velocity {
     }
   }
 
+  public Velocity(Velocity v) {
+    this.x = v.x;
+    this.y = v.y;
+    recalcLinear();
+  }
+
   public double getX() {
     return x;
   }
@@ -47,6 +53,19 @@ public class Velocity {
   public double getT() {
     return t;
   }
+
+  public Velocity scale(double s) {
+    this.t *= s;
+    recalcTrig();
+    return this;
+  }
+
+  public Velocity add(Velocity v) {
+    this.x += v.x;
+    this.y += v.y;
+    recalcLinear();
+    return this;
+  }  
 
   private void recalcLinear() {
     m = Math.sqrt(x*x+y*y);

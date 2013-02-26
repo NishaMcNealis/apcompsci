@@ -11,6 +11,8 @@ public class Constants {
     POINT_MAX_M = 10,
     POINT_MIN_M = 2,
     POINT_MAX_T = 360,
+    POINT_MAX_MASS = 10,
+    POINT_MIN_MASS = 1,
 
     FRAME_HEIGHT = 400,
     FRAME_WIDTH  = 600,
