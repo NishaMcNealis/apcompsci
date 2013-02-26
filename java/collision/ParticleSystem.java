@@ -18,13 +18,8 @@ class ParticleSystem {
 
     for (int i = 0; i < n; i++) {
       Velocity v = new Velocity();
-      /*
       v.setM(rand.nextInt(Constants.POINT_MAX_M) + Constants.POINT_MIN_M);
       v.setT(rand.nextInt(Constants.POINT_MAX_T));
-
-      v.setM(rand.nextInt(Constants.POINT_MAX_M));
-      v.setT(rand.nextInt(Constants.POINT_MAX_T));      
-      */
 
       Point p = new Point();
       p.setX(rand.nextInt(Constants.FRAME_WIDTH));
