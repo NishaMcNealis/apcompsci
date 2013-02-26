@@ -1,16 +1,26 @@
 public class binary_search_tree {
   private Node root;
   
-  public add(int v) {
-    if (root.val == null) {
+  public void add(int v) {
+    if (root.val == 0) {
       root.val = v;
     }
     else {
-      root = insert(root, v);
+      insert(root, v);
     }
   }
 
-  public insert(Node n; int v) {
-    n = 
+  public void insert(Node n, int v) {
+    if (n.val == 0) {
+      n.val = v;
+    }
+    else if (v < n.val) {
+      insert(n.left, v);
+    }
+    else if (v > n.val) {
+      insert(n.right, v);
+    }
   }
 }
+
+// code is functional unless an element is 0, because java does not allow null ints
