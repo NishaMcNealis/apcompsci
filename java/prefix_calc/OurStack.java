@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 class OurStack {
   private ArrayList<BigDecimal> stack;
@@ -34,5 +35,13 @@ class OurStack {
     BigDecimal a = peek(i);
     stack.remove(i);
     return a;
+  }
+
+  public void print() {
+    System.out.print("[");
+    for (BigDecimal bd : stack) {
+      System.out.print(bd+", ");
+    }
+    System.out.println("]");
   }
 }

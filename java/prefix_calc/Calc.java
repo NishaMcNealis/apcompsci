@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.lang.Character;
+import java.util.Arrays;
 import java.util.Collections;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -7,24 +7,25 @@ import java.math.RoundingMode;
 
 class Calc {
   public static String prefix_string;
-  public static String postfix_string;
-
-  public static ArrayList<String> postfix;
+  public static ArrayList<String> prefix;
   public static OurStack res = new OurStack();
 
   public static void main(String[] args) {
     prefix_string = args[0];
-    postfix_string = reverse(prefix_string);
-    postfix = new ArrayList<String>();
-    Collections.addAll(postfix, postfix_string.split(" "));
-    System.out.println(process(postfix));
+    prefix = new ArrayList<String>(Arrays.asList(prefix_string.split(" ")));
+    Collections.reverse(prefix);
+
+    System.out.println(process(prefix));
   }
 
-  public static BigDecimal process(ArrayList<String> post) {
-    for (String s : post) {
-      if (isDouble(s)) {
+  public static BigDecimal process(ArrayList<String> pre) {
+    for (String s : pre) {
+      // res.print();
+
+      if (isNumber(s)) {
         res.push(BigDecimal.valueOf(Double.parseDouble(s)));
       }
+
       else {
         BigDecimal a = res.pop();
         BigDecimal b = res.pop();
@@ -32,10 +33,6 @@ class Calc {
       }
     }
     return res.peek();
-  }
-
-  public static String reverse(String s) {
-    return new StringBuffer(s).reverse().toString();
   }
 
   public static BigDecimal do_op(char op, BigDecimal a, BigDecimal b) {
@@ -63,7 +60,7 @@ class Calc {
     return res;
   }
 
-  public static boolean isDouble (String s) {
+  public static boolean isNumber(String s) {
    try {
      Double.parseDouble(s);
      return true;

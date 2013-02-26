@@ -16,14 +16,15 @@ class ParticleSystem {
     Random rand = new Random();
     points = new ArrayList<Point>();
 
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       Velocity v = new Velocity();
       v.setM(rand.nextInt(Constants.POINT_MAX_M));
-      v.setT(rand.nextInt(Constants.POINT_MAX_T));
+      v.setT(rand.nextInt(Constants.POINT_MAX_T));      
 
       Point p = new Point();
       p.setX(rand.nextInt(Constants.FRAME_WIDTH));
       p.setY(Constants.FRAME_OFFSET + rand.nextInt(Constants.FRAME_HEIGHT));
+      p.setM(rand.nextInt(Constants.POINT_MAX_MASS)+Constants.POINT_MIN_MASS);
       p.setV(v);
       points.add(p);
     }
@@ -34,9 +35,16 @@ class ParticleSystem {
     for (Point p : points) {
       for (Point k : points) {
         if (p.sameAs(k)) continue;
+
         else if (p.closeTo(k)) {
-          // oooooooooomg render
+          Point[] ps = p.interact(k);
+          p = ps[0];
+          k = ps[1];
         }
+
+	else {
+	  k.move(Constants.FRAME_REFRESH_RATE);
+	}
       }
     }
   }
@@ -56,5 +64,11 @@ class ParticleSystem {
 
   public boolean haveFrame() {
     return true;
+  }
+
+  public void print() {
+    for (Point p : points) {
+      System.out.println(p.toString());
+    }
   }
 }

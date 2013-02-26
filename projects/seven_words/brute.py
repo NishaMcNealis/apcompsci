@@ -1,9 +1,9 @@
 import itertools, sys
 
-#f = open('/usr/share/dict')
+f = open('/usr/share/dict/words').read().split('\n')
 
 def is_word(string):
-    return False
+    return string in f
 
 def find_words(blocks, num):
     words = []

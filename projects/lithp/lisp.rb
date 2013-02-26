@@ -1,3 +1,5 @@
+require 'readline'
+
 class Proc
   def to_l
     obj = Object.new
@@ -42,6 +44,14 @@ class Lisp
       :map => ->(op, args) {
         args.inject op
       },
+      :lambda => ->(args, body) {
+        return ->(*args) {
+          body
+        }
+      },
+      :define => ->(name, lam) {
+        @env[name] = eval lam
+      },
       :range => ->(srt=0, stp=10, step=1) {
         p srt.class, stp.class, step.class
         (srt..stp).step step
@@ -50,9 +60,8 @@ class Lisp
   end
 
   def apply fn, args
-    fn = fn.to_sym if not fn.is_a? Symbol
-    p "("+fn.to_s+" "+args.join(" ")+")"
-    return args.inject(fn) if fn.to_proc.to_l and Lisp.instance_methods(true).include? fn
+#    p "("+fn.to_s+" "+args.join(" ")+")"
+#    return args.inject(fn) if fn.to_proc.to_l and Lisp.instance_methods(true).include? fn
     return @env[fn].call(args, @env) if @env[fn].respond_to? :call
     self.eval @env[fn][2], Hash[*(@env[fn][1].zip args).flatten(1)]
   end
@@ -67,8 +76,8 @@ class Lisp
     args = sexpr
     args.delete_at 0
 
-    p fn
-    p args
+    p "fn: "+fn.to_s
+    p "args: "+args.to_s
 
     args = args.map {|a| self.eval(a)} if not [:quote, :if, :map, :lambda].member? fn
     apply fn, args
@@ -76,10 +85,11 @@ class Lisp
 end
 
 def repl l = Lisp.new
-  while true
-    print "> "
-    $stdout.flush
-    p l.eval eval gets
+  loop do
+    line = Readline::readline '> '
+    break if line == 'quit'
+    Readline::HISTORY.push line
+    p l.eval eval line
   end
 end
 
