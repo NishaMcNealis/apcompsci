@@ -33,12 +33,13 @@ class ParticleSystem {
 
   public void computeFrame() {
     for (Point p : points) {
+
+      if (p.closeToWall()) {
+        p.interactWithWall();
+      }
+
       for (Point k : points) {
         if (p.sameAs(k)) continue;
-
-        else if (p.closeToWall()) {          
-          p.interactWithWall();
-        }
 
         else if (p.closeTo(k)) {
           k = p.interact(k);

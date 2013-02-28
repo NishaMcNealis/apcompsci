@@ -1,5 +1,4 @@
 import java.awt.Graphics;
-import java.util.Random;
 
 public class Point {
   private double x, y;
@@ -74,7 +73,7 @@ public class Point {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
     
     return y == r
-      ||   y == Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET;
+      ||   y == Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET - r;
   }
   
   public boolean closeToX() {
@@ -113,11 +112,11 @@ public class Point {
 
   public void interactWithWall() {
     if (closeToX()) {
-      setX(-v.getX());
+      v.setX(-v.getX());
     }
 
     else if (closeToY()) {
-      setY(-v.getY());
+      v.setY(-v.getY());
     }
   }
   

@@ -6,8 +6,8 @@ public class Constants {
     FRAME_BACKGROUND = Color.BLACK;
   
   public static final int
-    POINT_NUMBER = 28,
-    POINT_MAX_M = 5,
+    POINT_NUMBER = 10,
+    POINT_MAX_M = 10,
     POINT_MIN_M = 2,
     POINT_MAX_T = 360,
     POINT_MAX_MASS = 10,
