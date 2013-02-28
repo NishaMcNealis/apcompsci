@@ -83,11 +83,11 @@ public class Point {
   }
 
   public Point[] interact(Point k) {
-    Velocity u1 = new Velocity(v);
-    Velocity u2 = new Velocity(k.v);
+    Velocity v1 = new Velocity(v);
+    Velocity v2 = new Velocity(k.v);
 
-    Velocity v1 = u1.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k)))/(m+k.m));
-    Velocity v2 = u1.scale(2*m*Math.sin(theta(k)/2)/(m+k.m));
+    v1.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k)))/(m+k.m));
+    v2.scale(2*m*Math.sin(theta(k)/2)/(m+k.m));
 
     setV(v1);
     k.setV(v2);
