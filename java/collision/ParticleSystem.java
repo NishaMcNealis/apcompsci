@@ -36,10 +36,12 @@ class ParticleSystem {
       for (Point k : points) {
         if (p.sameAs(k)) continue;
 
+        else if (p.closeToWall()) {          
+          p.interactWithWall();
+        }
+
         else if (p.closeTo(k)) {
-          Point[] ps = p.interact(k);
-          p = ps[0];
-          k = ps[1];
+          k = p.interact(k);
         }
 
 	else {
