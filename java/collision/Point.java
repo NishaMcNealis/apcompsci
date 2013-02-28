@@ -69,16 +69,25 @@ public class Point {
     return distanceTo(k) <= r*2;
   }
 
+  public boolean closeToWall() {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    return x == 0+r || x == FRAME_WIDTH-r;
+  }
+
   public boolean sameAs(Point k) {
     return getID() == k.getID();
+  }
+
+  public double theta(Point k) {
+    
   }
 
   public Point[] interact(Point k) {
     Velocity u1 = new Velocity(v);
     Velocity u2 = new Velocity(k.v);
 
-    Velocity v1 = u1.scale(m-k.m).add(u2.scale(2*k.m)).scale(1/(m+k.m));
-    Velocity v2 = u2.scale(k.m-m).add(u1.scale(2*m)).scale(1/(m+k.m));
+    Velocity v1 = u1.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k)))/(m+k.m));
+    Velocity v2 = u1.scale(2*m*Math.sin(theta(k)/2)/(m+k.m));
 
     setV(v1);
     k.setV(v2);
