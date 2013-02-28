@@ -69,21 +69,27 @@ public class Point {
     return distanceTo(k) <= r*2;
   }
 
+  public boolean inRange(double a, double b, double dist) {
+    return Math.abs(a-b) <= dist;
+  }
+
   public boolean closeToY() {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
     
-    return y == r
-      ||   y == Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET - r;
+    return inRange(y, r, Constants.POINT_INTERACT_DIST)
+      ||   inRange(y, Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET - r, Constants.POINT_INTERACT_DIST);
   }
   
   public boolean closeToX() {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
     
-    return x == r
-      ||   x == Constants.FRAME_WIDTH - r;
+    return inRange(x, r, Constants.POINT_INTERACT_DIST)
+      ||   inRange(x, Constants.FRAME_WIDTH - r, Constants.POINT_INTERACT_DIST);
   }
   
   public boolean closeToWall() {
+    print();
+
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
     
     return closeToX() || closeToY();
@@ -136,7 +142,15 @@ public class Point {
     g.fillOval((int) x, (int) y, (int) d, (int) d);
   }
 
+  public String format(double d) {
+    return String.format("%.2f", d);
+  }
+
   public String toString() {
-    return "(" + x + "," + y + ")";
+    return "P"+id+"("+format(x)+","+format(y)+") <"+format(v.getX())+", "+format(v.getY())+">";
+  }
+
+  public void print() {
+    System.out.println(toString());
   }
 }
