@@ -42,11 +42,11 @@ class ParticleSystem {
         if (p.sameAs(k)) continue;
 
         else if (p.closeTo(k)) {
-          //          k = p.interact(k);
+          k = p.interact(k);
         }
 
 	else {
-	  k.move(Constants.FRAME_REFRESH_RATE);
+	  p.move(Constants.FRAME_REFRESH_RATE);
 	}
       }
     }

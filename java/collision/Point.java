@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Point {
   private double x, y;
@@ -60,17 +61,17 @@ public class Point {
   }
   
   public double distanceTo(Point k) {
-    return Math.sqrt(Math.pow(k.getX()-x,2) + Math.pow(k.getY()-y,2));
+    return Math.sqrt(Math.pow(k.getX() - x, 2) + Math.pow(k.getY() - y, 2));
   }
 
    public boolean closeTo(Point k) {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
 
-    return distanceTo(k) <= r*2;
+    return distanceTo(k) <= r * 2;
   }
 
   public boolean inRange(double a, double b, double dist) {
-    return Math.abs(a-b) <= dist;
+    return Math.abs(a - b) <= dist;
   }
 
   public boolean closeToY() {
@@ -88,9 +89,7 @@ public class Point {
   }
   
   public boolean closeToWall() {
-    print();
-
-    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
     
     return closeToX() || closeToY();
   }
@@ -100,19 +99,14 @@ public class Point {
   }
 
   public double theta(Point k) {
-    return 10d;
+    Random rand = new Random();
+
+    return rand.nextDouble()*Constants.POINT_DEFLECTION_MAX;
   }
 
   public Point interact(Point k) {
-    Velocity v1 = new Velocity(v);
-    Velocity v2 = new Velocity(k.v);
-
-    v1.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k)))/(m+k.m));
-    v2.scale(2*m*Math.sin(theta(k)/2)/(m+k.m));
-
-    setV(v1);
-    k.setV(v2);
-
+    v.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k))) / (m+k.m));
+    k.v.scale(2*m*Math.sin(theta(k)/2) / (m+k.m));
     return k;
   }
 
