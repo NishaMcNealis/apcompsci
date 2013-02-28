@@ -97,7 +97,7 @@ public class Point {
     return 10d;
   }
 
-  public Point[] interact(Point k) {
+  public Point interact(Point k) {
     Velocity v1 = new Velocity(v);
     Velocity v2 = new Velocity(k.v);
 
