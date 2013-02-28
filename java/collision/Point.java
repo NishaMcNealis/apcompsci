@@ -1,5 +1,4 @@
 import java.awt.Graphics;
-import java.util.Random;
 
 public class Point {
   private double x, y;
@@ -64,14 +63,30 @@ public class Point {
     return Math.sqrt(Math.pow(k.getX()-x,2) + Math.pow(k.getY()-y,2));
   }
 
-  public boolean closeTo(Point k) {
+   public boolean closeTo(Point k) {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+
     return distanceTo(k) <= r*2;
   }
 
+  public boolean closeToY() {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    
+    return y == r
+      ||   y == Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET - r;
+  }
+  
+  public boolean closeToX() {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    
+    return x == r
+      ||   x == Constants.FRAME_WIDTH - r;
+  }
+  
   public boolean closeToWall() {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
-    return x == 0+r || x == FRAME_WIDTH-r;
+    
+    return closeToX() || closeToY();
   }
 
   public boolean sameAs(Point k) {
@@ -79,7 +94,7 @@ public class Point {
   }
 
   public double theta(Point k) {
-    
+    return 10d;
   }
 
   public Point[] interact(Point k) {
@@ -92,8 +107,17 @@ public class Point {
     setV(v1);
     k.setV(v2);
 
-    Point[] ps = {this, k};
-    return ps;
+    return k;
+  }
+
+  public void interactWithWall() {
+    if (closeToX()) {
+      v.setX(-v.getX());
+    }
+
+    else if (closeToY()) {
+      v.setY(-v.getY());
+    }
   }
   
   // t == milliseconds since last refresh
