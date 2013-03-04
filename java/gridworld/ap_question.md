@@ -9,4 +9,5 @@ Modify the bug runner code, so that when two bugs collide:
 
 
 For example, you can start with:
+
 public void mateWith(Bug bug) {}
