@@ -61,17 +61,37 @@ public class Point {
   }
   
   public double distanceTo(Point k) {
-    return Math.sqrt(Math.pow(k.getX()-x,2) + Math.pow(k.getY()-y,2));
+    return Math.sqrt(Math.pow(k.getX() - x, 2) + Math.pow(k.getY() - y, 2));
   }
 
-  public boolean closeTo(Point k) {
+   public boolean closeTo(Point k) {
     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
-    return distanceTo(k) <= r*2;
+
+    return distanceTo(k) <= r * 2;
   }
 
+  public boolean inRange(double a, double b, double dist) {
+    return Math.abs(a - b) <= dist;
+  }
+
+  public boolean closeToY() {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    
+    return inRange(y, r, Constants.POINT_INTERACT_DIST)
+      ||   inRange(y, Constants.FRAME_HEIGHT + Constants.FRAME_OFFSET - r, Constants.POINT_INTERACT_DIST);
+  }
+  
+  public boolean closeToX() {
+    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    
+    return inRange(x, r, Constants.POINT_INTERACT_DIST)
+      ||   inRange(x, Constants.FRAME_WIDTH - r, Constants.POINT_INTERACT_DIST);
+  }
+  
   public boolean closeToWall() {
-    double r = Constants.POINT_MASS_RADIUS_RATIO*m;
-    return x == 0+r || x == FRAME_WIDTH-r;
+     double r = Constants.POINT_MASS_RADIUS_RATIO*m;
+    
+    return closeToX() || closeToY();
   }
 
   public boolean sameAs(Point k) {
@@ -79,21 +99,25 @@ public class Point {
   }
 
   public double theta(Point k) {
-    
+    Random rand = new Random();
+
+    return rand.nextDouble()*Constants.POINT_DEFLECTION_MAX;
   }
 
-  public Point[] interact(Point k) {
-    Velocity u1 = new Velocity(v);
-    Velocity u2 = new Velocity(k.v);
+  public Point interact(Point k) {
+    v.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k))) / (m+k.m));
+    k.v.scale(2*m*Math.sin(theta(k)/2) / (m+k.m));
+    return k;
+  }
 
-    Velocity v1 = u1.scale(Math.sqrt(m*m + k.m*k.m + 2*m*k.m*Math.cos(theta(k)))/(m+k.m));
-    Velocity v2 = u1.scale(2*m*Math.sin(theta(k)/2)/(m+k.m));
+  public void interactWithWall() {
+    if (closeToX()) {
+      v.setX(-v.getX());
+    }
 
-    setV(v1);
-    k.setV(v2);
-
-    Point[] ps = {this, k};
-    return ps;
+    else if (closeToY()) {
+      v.setY(-v.getY());
+    }
   }
   
   // t == milliseconds since last refresh
@@ -112,7 +136,15 @@ public class Point {
     g.fillOval((int) x, (int) y, (int) d, (int) d);
   }
 
+  public String format(double d) {
+    return String.format("%.2f", d);
+  }
+
   public String toString() {
-    return "(" + x + "," + y + ")";
+    return "P"+id+"("+format(x)+","+format(y)+") <"+format(v.getX())+", "+format(v.getY())+">";
+  }
+
+  public void print() {
+    System.out.println(toString());
   }
 }

@@ -54,10 +54,9 @@ public class Velocity {
     return t;
   }
 
-  public Velocity scale(double s) {
-    this.t *= s;
+  public void scale(double s) {
+    m *= s;
     recalcTrig();
-    return this;
   }
 
   public Velocity add(Velocity v) {
