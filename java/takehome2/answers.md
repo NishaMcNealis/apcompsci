@@ -11,35 +11,40 @@ Period: 2
   
 *Stack*
 * Superclass
-
+  * Vector
 * Meaning
-
+  * It's a LIFO way of holding elements. Simple pop/push, etc. Works exactly like a tower of books. Don't try and pull from the middle.
 * Picture
   * <img src="stack.png" width="300" />
 
 *Priority Queue*
 * Superclass
-
+  * AbstractQueue
 * Meaning
-
+  * A queue in which each element has a designated "priority" by which it is pulled out.
 * Picture
   * <img src="pqueue.png" width="300" />
 
 *Circular Queue*
 * Superclass
-
+  * It does not appear to exist in Java natively, but one could extend AbstractQueue, most likely.
 * Meaning
-
+  * The tail (T) and head (H) of the queue are next to each other, such that when iterating over the queue the iterator goes from H-&gt;T and T-&gt;H.
 * Picture
   * <img src="cqueue.png" width="300" />
 
 *Recursion*
 * Definition
-
+  * Repeated application of a method within the method itself, generally on different data.
 * Necessary Elements
-
+  * Base case
+  * Conditions for action past the base case
 * Fibonacci method
-  * <pre> </pre>
-
+  * <pre>
+  long int fibonacci(int n) {
+    if (n <= 1) return 1;
+    else return fibonacci(n-1)+fibonacci(n-2);
+  }
+  </pre>
 * Picture
   * <img src="fibonacci.png" width="300" />
