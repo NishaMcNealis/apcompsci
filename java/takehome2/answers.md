@@ -7,7 +7,7 @@ Period: 2
 * Meaning
   * Designed for holding elements prior to processing (according to javadoc). Normally FIFO.
 * Picture
-  * ![](queue.png)
+  * <img src="queue.png" width="300" />
   
 *Stack*
 * Superclass
@@ -15,7 +15,7 @@ Period: 2
 * Meaning
 
 * Picture
-  * ![](stack.png)
+  * <img src="stack.png" width="300" />
 
 *Priority Queue*
 * Superclass
@@ -23,7 +23,7 @@ Period: 2
 * Meaning
 
 * Picture
-  * ![](pqueue.png)
+  * <img src="pqueue.png" width="300" />
 
 *Circular Queue*
 * Superclass
@@ -31,12 +31,15 @@ Period: 2
 * Meaning
 
 * Picture
-  * ![](cqueue.png)
+  * <img src="cqueue.png" width="300" />
 
 *Recursion*
-* Superclass
+* Definition
 
-* Meaning
+* Necessary Elements
+
+* Fibonacci method
+  * <pre> </pre>
 
 * Picture
-  * ![](fibonacci.png)
+  * <img src="fibonacci.png" width="300" />
