@@ -24,7 +24,7 @@ class ParticleSystem {
       Point p = new Point();
       p.setX(rand.nextInt(Constants.FRAME_WIDTH));
       p.setY(Constants.FRAME_OFFSET + rand.nextInt(Constants.FRAME_HEIGHT));
-      p.setM(rand.nextInt(Constants.POINT_MAX_MASS)+Constants.POINT_MIN_MASS);
+      p.setM(rand.nextInt(Constants.POINT_MAX_MASS) + Constants.POINT_MIN_MASS);
       p.setV(v);
       points.add(p);
     }
