@@ -42,8 +42,8 @@ Period: 2
 * Fibonacci method
   * <pre>
   long int fibonacci(int n) {
-    if (n <= 1) return 1;
-    else return fibonacci(n-1)+fibonacci(n-2);
+  &nbsp;&nbsp;if (n <= 1) return 1;
+  &nbsp;&nbsp;else return fibonacci(n-1)+fibonacci(n-2);
   }
   </pre>
 * Picture
