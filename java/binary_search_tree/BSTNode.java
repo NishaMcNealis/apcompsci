@@ -15,11 +15,6 @@ public class BSTNode {
     return (left == null && right == null);
   }
 
-  public int getDepth(BSTNode node) {
-    if (node.left == null && node.right == null) return 0;
-    else return 1 + getDepth(node.left) + getDepth(node.right)
-  }
-
   public void insert(Integer n) {
     if(val == null) {
       val = n;
