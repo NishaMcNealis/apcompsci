@@ -48,3 +48,45 @@ Period: 2
   </pre>
 * Picture
   * <img src="fibonacci.png" width="300" />
+
+*Tree*
+* Meaning
+  * A collection of nodes, each possibly with linked nodes of its own.
+
+*Binary Tree*
+* Meaning
+  * A tree where each node has at most two linked nodes, or "children".
+* Traversal
+  * One can traverse depth first or breadth first. Depth first visits the "bottom"-most node first, then works its way back up and around the tree by recursively applying that to the other branches. Breadth first visits "level" by "level", or by visiting the nearest node each time.
+* Three types
+  * Full
+  * Complete
+  * Search
+
+*Binary Search Tree*
+* Meaning
+  * Sorted binary tree where:
+    * Left subtree of a node has only nodes with smaller values than the node itself
+    * Right subtree of a node has only nodes with greater values than the node itself
+    * Left & Right subtrees must also be binary search trees
+    * There are no duplicate nodes
+* Program 1
+  * 
+* Program 2
+  * 
+
+*Complete Binary Tree*
+* Meaning
+  * 
+
+*Full Binary Tree*
+* Meaning
+  * 
+
+*TreeSet*
+* Meaning
+  * 
+
+*TreeMap*
+* Meaning
+  * 
