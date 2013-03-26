@@ -28,8 +28,6 @@ public class CollisionFrame extends JFrame {
       System.err.println("Haha, your threading sucks");
     }
 
-    if (system.haveFrame()) {
-      repaint();
-    }
+    if (system.haveFrame()) repaint();
   }
 }
