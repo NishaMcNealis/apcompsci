@@ -11,13 +11,19 @@ public class BSTNode {
     val = n;
   }
 
+  public void populate(int[] arr) {
+    for(int i = 0; i < arr.length; i++) {
+      insert(arr[i]);
+    }
+  }
+
   public boolean hasChild() {
     return (left == null && right == null);
   }
 
   public int getDepth(BSTNode node) {
-    if (node.left == null && node.right == null) return 0;
-    else return 1 + getDepth(node.left) + getDepth(node.right)
+    if (!node.hasChild()) return 0;
+    else return 1 + getDepth(node.left) + getDepth(node.right);
   }
 
   public void insert(Integer n) {
