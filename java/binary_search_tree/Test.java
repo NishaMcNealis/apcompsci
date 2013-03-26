@@ -5,8 +5,8 @@ public class Test {
     System.out.println(run(10000));
   }
 
-  public static int run(int numTrials) {
-    int sum = 0;
+  public static double run(int numTrials) {
+    double sum = 0;
     for(int i = 0; i < numTrials; i++) {
       sum += trial();
     }
@@ -55,11 +55,17 @@ public class Test {
     if (node.left == null && node.right == null) {
       return 0;
     }
+    if(node.left == null) {
+      return getDepth(node.right);
+    }
+    if(node.right == null) {
+      return getDepth(node.left);
+    }
     int l = getDepth(node.left);
     int r = getDepth(node.right);
     if(l > r) {
       return l + 1;
     }
-    return r + 1;
+    return r + 1; 
   }
 }
