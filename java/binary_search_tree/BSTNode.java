@@ -1,7 +1,7 @@
 public class BSTNode {
   Integer val;
-  BSTNode left;
-  BSTNode right;
+  public BSTNode left;
+  public BSTNode right;
   
   BSTNode() {
     
@@ -9,6 +9,15 @@ public class BSTNode {
   
   BSTNode(Integer n) {
     val = n;
+  }
+
+  public boolean hasChild() {
+    return (left == null && right == null);
+  }
+
+  public int getDepth(BSTNode node) {
+    if (node.left == null && node.right == null) return 0;
+    else return 1 + getDepth(node.left) + getDepth(node.right)
   }
 
   public void insert(Integer n) {

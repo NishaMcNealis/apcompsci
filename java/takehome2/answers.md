@@ -77,16 +77,16 @@ Period: 2
 
 *Complete Binary Tree*
 * Meaning
-  * 
+  * Every "level" (except maybe the bottom-most) is full, with all nodes as far on the left side as possible.
 
 *Full Binary Tree*
 * Meaning
-  * 
+  * Every node that is not a leaf (bottom-most only node) has two children.
 
 *TreeSet*
 * Meaning
-  * 
+  * Naturally ordered tree based on a TreeMap and NavigableSet.
 
 *TreeMap*
 * Meaning
-  * 
+  * Red-black tree based on NavigableMap that is naturally ordered.
