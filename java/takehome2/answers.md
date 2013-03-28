@@ -70,10 +70,8 @@ Period: 2
     * Right subtree of a node has only nodes with greater values than the node itself
     * Left & Right subtrees must also be binary search trees
     * There are no duplicate nodes
-* Program 1
-  * 
-* Program 2
-  * 
+* Program
+  * [Click me](http://github.com/tekknolagi/apcompsci/tree/master/java/binary_search_tree/)
 
 *Complete Binary Tree*
 * Meaning
