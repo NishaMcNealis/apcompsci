@@ -1,36 +1,71 @@
 import java.util.Random;
 
-public class Run {
-  public static BSTNode tree;
-  public static int[] arr = new int[10];
-  
+public class Test {
   public static void main(String[] args) {
-    tree = new BSTNode();
-
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = (int) ((new Random()).nextDouble()*arr.length);
-    }
-
-    tree.populate(arr);
+    System.out.println(run(10000));
   }
 
-  public int[] randomize(int total) {
-    Random rand = new Random();
-    int r;
-    int[] arr = new int[total];
-    boolean watchdog;
+  public static double run(int numTrials) {
+    double sum = 0;
+    for(int i = 0; i < numTrials; i++) {
+      sum += trial();
+    }
+    return sum/numTrials;
+  }
   
+  public static int trial() {
+    return getDepth(populate(randomize(1000)));
+  }
+  
+  public static BSTNode populate(int[] arr) {
+    BSTNode tree = new BSTNode();
+    for(int i = 0; i < arr.length; i++) {
+      tree.insert(arr[i]);
+    }    
+    return tree;
+  }
+  
+  public static int[] randomize(int total) {
+    Random rand = new Random();
+    Integer[] arr = new Integer[1000];
+    boolean watchdoge;
+    
     for(int i = 0; i < total; i++) {
-      watchdog = true;
-      while(watchdog) {
-        r = (int) (rand.nextDouble() * total);
-        if(new Integer(arr[r]) == null) {
-          arr[r] = (int) i;
-          watchdog = false;
-        }
+      watchdoge = true;
+      while(watchdoge) {
+	int r = (int)(rand.nextDouble() * 1000);
+	if(arr[r] == null) {
+	  arr[r] = i;
+	  watchdoge = false;
+	}
       }
     }
-    return arr;
+    return toIntArr(arr);
+  }
+
+  public static int[] toIntArr(Integer arr[]) {
+    int[] ret = new int[arr.length];
+    for(int i = 0; i < arr.length; i++) {
+      ret[i] = arr[i];
+    }
+    return ret;
+  }
+
+  public static int getDepth(BSTNode node) {
+    if (node.left == null && node.right == null) {
+      return 0;
+    }
+    if(node.left == null) {
+      return getDepth(node.right);
+    }
+    if(node.right == null) {
+      return getDepth(node.left);
+    }
+    int l = getDepth(node.left);
+    int r = getDepth(node.right);
+    if(l > r) {
+      return l + 1;
+    }
+    return r + 1; 
   }
 }
-
