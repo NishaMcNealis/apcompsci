@@ -1,19 +1,19 @@
 import java.util.*;
 import java.math.*;
 
-const double probBreed = 0.14285714285;
-const double probDeath = 0.2;
+const double probBreed = 1.0/7.0;
+const double probDeath = 1.0/5.0;
 
 public class LifeBug extends Bug {
-	public LifeBug() {
-		super();
-		setDirection( Location.NORTH );
-	}
+  public LifeBug() {
+    super();
+    setDirection( Location.NORTH );
+  }
 
-	public LifeBug(Color bugColor) {
-		super(bugColor);
-		setDirection( Location.NORTH );
-	}
+  public LifeBug(Color bugColor) {
+    super(bugColor);
+    setDirection( Location.NORTH );
+  }
 
 	void act() {
 		if(turn && !roll()) move();
@@ -30,9 +30,9 @@ public class LifeBug extends Bug {
 		return false;
 	}
 
-	ArrayList<Location> turn_poss() {
-		ArrayList<Location> empty_locs = Grid.getEmptyAdjacentLocations( getLocation() );
-		ArrayList<Location> ret = new ArrayList<Location>();
+  ArrayList<Location> turn_poss() {
+    ArrayList<Location> empty_locs = Grid.getEmptyAdjacentLocations( getLocation() );
+    ArrayList<Location> ret = new ArrayList<Location>();
 		
 		for(int i = 0; i < empty_locs.size(); i++) {
 			int dir = Location.getDirectionToward( empty_locs[i] );
@@ -55,19 +55,19 @@ public class LifeBug extends Bug {
 		return ret;
 	}
 
-	void move() {
-		moveTo( getLocation().getAdjacentLocation( getDirection() ) );
-	}
+  void move() {
+    moveTo( getLocation().getAdjacentLocation( getDirection() ) );
+  }
 
-	bool roll() {
-		Random r = new Random();
-		bool noBreed = r.nextInt( Math.round( 1 / probBreed ));
-		bool noDeath = r.nextInt( Math.round( 1 / probBreed ));
-		if(!noBreed) breed();	
-		if(!noDeath) removeSelfFromGrid();
-		if(!noBreed || !noDeath) return false;
-		return true;
-	}
+  bool roll() {
+    Random r = new Random();
+    bool noBreed = r.nextInt( Math.round( 1 / probBreed ));
+    bool noDeath = r.nextInt( Math.round( 1 / probBreed ));
+    if(!noBreed) breed();	
+    if(!noDeath) removeSelfFromGrid();
+    if(!noBreed || !noDeath) return false;
+    return true;
+  }
 
 	void breed() {
 		Location loc = getLocation();
