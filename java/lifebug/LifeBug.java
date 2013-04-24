@@ -16,16 +16,18 @@ public class LifeBug extends Bug {
 	}
 
 	void act() {
-		turn();
-		if(!roll()) move();
+		if(turn && !roll()) move();
 	}
 
-	void turn() {
+	boolean turn() {
 		Random r = new Random();
 		ArrayList<Location> poss_dirs = turn_poss();
-		
-		dir_ind = r.nextInt( poss_dirs.size() );
-		setDirection( poss_dirs.get( dir_ind ) );
+		if(!poss_dirs.empty()) {
+			dir_ind = r.nextInt( poss_dirs.size() );
+			setDirection( poss_dirs.get( dir_ind ) );
+			return true;
+		}
+		return false;
 	}
 
 	ArrayList<Location> turn_poss() {
@@ -39,6 +41,11 @@ public class LifeBug extends Bug {
 			case Location.SOUTH:
 			case Location.EAST:
 			case Location.WEST:
+				if((getDirection() == NORTH && dir == SOUTH) ||
+				   (getDirection() == EAST && dir == WEST) ||
+				   (getDirection() == SOUTH && dir == NORTH) ||
+				   (getDirection() == WEST && dir == EAST))
+					break;
 				ret.add( dir );
 				break;
 			default:
@@ -64,9 +71,9 @@ public class LifeBug extends Bug {
 
 	void breed() {
 		Location loc = getLocation();
-		put( loc.getAdjacentLocation( Location.NORTH ), new LifeBug( getColor() ));
-		put( loc.getAdjacentLocation( Location.EAST ), new LifeBug( getColor() ));
-		put( loc.getAdjacentLocation( Location.SOUTH ), new LifeBug( getColor() ));
-		put( loc.getAdjacentLocation( Location.WEST ), new LifeBug( getColor() ));
+		getGrid().put( loc.getAdjacentLocation( Location.NORTH ), new LifeBug( getColor() ));
+		getGrid().put( loc.getAdjacentLocation( Location.EAST ), new LifeBug( getColor() ));
+		getGrid().put( loc.getAdjacentLocation( Location.SOUTH ), new LifeBug( getColor() ));
+		getGrid().put( loc.getAdjacentLocation( Location.WEST ), new LifeBug( getColor() ));
 	}
 }
